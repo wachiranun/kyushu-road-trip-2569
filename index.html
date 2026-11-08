@@ -545,6 +545,44 @@ tfoot td { font-weight: 600; border-bottom: none; background: var(--paper-alt); 
   color: var(--muted);
   line-height: 1.45;
 }
+.park-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .77rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 7px;
+  background: var(--paper-alt);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  margin-top: 3px;
+  width: fit-content;
+}
+.park-badge.free {
+  background: var(--ok-bg);
+  color: var(--ok);
+  border-color: color-mix(in srgb, var(--ok) 30%, var(--line));
+}
+.park-badge.paid {
+  background: var(--warn-bg);
+  color: var(--warn);
+  border-color: color-mix(in srgb, var(--warn) 35%, var(--line));
+}
+.park-badge.walk {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+}
+.fuel-tag {
+  background: var(--ok-bg);
+  color: var(--ok);
+  border: 1px solid color-mix(in srgb, var(--ok) 35%, transparent);
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .75rem;
+}
 .stop-actions {
   display: flex;
   flex-wrap: wrap;
@@ -649,10 +687,11 @@ footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top:
 </head>
 <body>
 
-  <nav class="sticky-nav" aria-label="แถบนำทางรายวัน">
+<nav class="sticky-nav" aria-label="แถบนำทางรายวัน">
   <div class="nav-inner">
     <a href="#top" class="nav-pill active">ภาพรวมทั้งทริป</a>
-    <a href="#tolls-sec" class="nav-pill">🛣️ สรุปค่าทางด่วน & เรือ</a>
+    <a href="#tolls-sec" class="nav-pill">🛣️ ค่าทางด่วน & เรือ</a>
+    <a href="#fuel-sec" class="nav-pill">⛽ แผนน้ำมัน & ที่จอดรถ</a>
     <a href="#d1" class="nav-pill">27/11 (วันแรก)</a>
     <a href="#d2" class="nav-pill">28/11 (Karato/Beppu)</a>
     <a href="#d3" class="nav-pill">29/11 (Hell/Yufuin)</a>
@@ -701,9 +740,9 @@ footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top:
       <div class="sub">≈ 1,910 บาท (รถ 4–5 ม. ¥5,100 + ผู้โดยสารเพิ่ม 2 คน)</div>
     </div>
     <div class="kpi">
-      <div class="label">อัตราแลกเปลี่ยนอ้างอิง</div>
-      <div class="val mono">100 ¥ ≈ 23 ฿</div>
-      <div class="sub">คำนวณสำหรับรถเก๋งขนาดมาตรฐาน (Regular Car)</div>
+      <div class="label">ค่าน้ำมันรวม (Nissan Serena e-Power)</div>
+      <div class="val mono">~¥10,500</div>
+      <div class="sub">≈ 2,415 บาท (~60 ลิตร · เติม 2 ครั้งตลอดทริป)</div>
     </div>
   </div>
 </header>
@@ -984,10 +1023,120 @@ footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top:
     </div>
     <div class="note" style="margin:0">
       <b>⛴ ค่าเรือเฟอร์รี่ Kumamoto Ferry (Ocean Arrow) วันที่ 2/12 รอบ 09:25:</b><br>
-      • ค่านำรถยนต์ขึ้นเรือ (ความยาว 4–5 เมตร รวมคนขับ 1 คน): <b>¥5,100</b> (ถ้ารถเล็กต่ำกว่า 4 ม. ¥4,400 / รถ SUV 5–6 ม. ¥6,800)<br>
+      • ค่านำรถยนต์ขึ้นเรือ (<b>Nissan Serena e-Power ยาว ~4.76 ม.</b> อยู่ในเรต 4–5 เมตร รวมคนขับ 1 คน): <b>¥5,100</b><br>
       • ค่าผู้โดยสารเพิ่มเติม (ผู้ใหญ่คนละ ¥1,600 × 2 คน): <b>¥3,200</b><br>
       • <b>รวมค่าเรือ (3 คน + รถ 1 คัน): ประมาณ ¥8,300 (≈ 1,910 ฿)</b>
     </div>
+  </div>
+</section>
+
+<!-- Fuel & Parking Strategy Section -->
+<section class="panel" id="fuel-sec" style="scroll-margin-top:64px">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px">
+    <div>
+      <div class="eyebrow">NISSAN SERENA e-POWER (3 PASSENGERS + LUGGAGE) · FUEL & PARKING GUIDE</div>
+      <h2>⛽ แผนการเติมน้ำมัน (Nissan Serena e-Power) & สรุปที่จอดรถทั้งทริป</h2>
+    </div>
+    <span class="chip">ถังน้ำมัน 52 ลิตร · ประหยัดจริง ~16–17.5 กม./ลิตร (1 ถังวิ่งได้ ~800 กม.)</span>
+  </div>
+
+  <div class="cols" style="margin-bottom:16px">
+    <div class="note ok" style="margin:0">
+      <b>🚐 สเปคและการกินน้ำมันจริงของ Nissan Serena e-Power (นั่ง 3 คน + กระเป๋า):</b><br>
+      • <b>ระบบขับเคลื่อน:</b> Series Hybrid (เครื่องยนต์เบนซินปั่นไฟขับมอเตอร์ไฟฟ้า 100%) มีระบบดึงพลังงานกลับตอนลงเขา (e-Pedal Step) ทำให้<b>ช่วงลงเขา Aso / Kikuchi / Sasebo แทบไม่กินน้ำมันเลย!</b><br>
+      • <b>อัตราสิ้นเปลืองจริง:</b> วิ่งทางด่วน ~15.5 กม./ล. · วิ่งในเมือง/ทางเขา ~17.5–19 กม./ล. · <b>เฉลี่ยทั้งทริป ~16.5 กม./ลิตร</b><br>
+      • <b>ประเภทน้ำมันที่ต้องเติม:</b> <b>Regular Gasoline (レギュラー · หัวจ่ายสีแดง)</b> ราคาประมาณ ~¥175/ลิตร<br>
+      • <b>สรุปปริมาณน้ำมันทั้งทริป (~980 กม.):</b> ใช้รวมประมาณ <b>~60 ลิตร (รวม ~¥10,500 หรือ ≈ 2,415 บาท)</b> แนะนำ<b>เติมน้ำมันแค่ 2 ครั้ง</b>ตลอดทริป!
+    </div>
+    <div class="note" style="margin:0">
+      <b>🅿️ ข้อควรระวังเรื่องขนาดรถ (ความสูง ~1.87 เมตร) กับที่จอดรถโรงแรมในเมือง:</b><br>
+      • <b>Nissan Serena e-Power เป็นรถตู้ MPV หลังคาสูง (~1.87 ม.)</b> จึง<b>เข้าลิฟต์ที่จอดรถอัตโนมัติ (Mechanical Tower Parking) ที่จำกัดความสูง 1.55 ม. ไม่ได้</b><br>
+      • <b>Nishitetsu Resort Inn Beppu (28–29/11):</b> ลานจอดกลางแจ้งจอดได้สบาย (¥800/คืน)<br>
+      • <b>Grids Premium Hotel Kumamoto (30/11–1/12):</b> ตอนเข้าจอดให้แจ้งพนักงานว่าเป็นรถ High-roof หรือจอดลานจอดรถพันธมิตรแบบพื้นราบ/ตึกจอดรถ (¥1,500–¥2,000/คืน)<br>
+      • <b>Hotel Monterey La Soeur Fukuoka (คืน 3/12):</b> ตึกจอดของโรงแรมบางช่องจำกัดความสูง 1.55–1.80 ม. แนะนำถามพนักงานหน้าล็อบบี้เพื่อชี้เป้าลานจอดรถพันธมิตรใกล้เคียงที่รองรับรถตู้ (¥1,800–¥2,000/คืน)
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr>
+          <th>วันที่</th>
+          <th>เส้นทางขับรถหลัก</th>
+          <th class="num">ระยะทาง</th>
+          <th class="num">น้ำมันที่ใช้</th>
+          <th class="num">คงเหลือในถัง (52L)</th>
+          <th>จุดแนะนำเติมน้ำมัน & ที่จอดรถสำคัญ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono"><b>28/11 (ส.)</b></td>
+          <td>Hakata → Karato Market → Mojiko → Beppu</td>
+          <td class="num">~220 กม.</td>
+          <td class="num">~14.0 L</td>
+          <td class="num">~38.0 L (73%)</td>
+          <td>รับรถน้ำมันเต็มถัง 100% · ที่จอดตึก Karato (¥120/30น.), Mojiko (¥200–300/ชม.), รร. Beppu (¥800/คืน)</td>
+        </tr>
+        <tr>
+          <td class="mono"><b>29/11 (อา.)</b></td>
+          <td>Beppu ↔ บ่อนรก ↔ Yufuin</td>
+          <td class="num">~55 กม.</td>
+          <td class="num">~3.5 L</td>
+          <td class="num">~34.5 L (66%)</td>
+          <td>บ่อนรกเบปปุ (จอดฟรีทุกบ่อ) · Yufuin จอดลาน Coin Parking 1 รอบแล้ว<b>เดินเที่ยวทั้งถนน Yunotsubo & ทะเลสาบ Kinrin</b> (¥500–800)</td>
+        </tr>
+        <tr>
+          <td class="mono"><b>30/11 (จ.)</b></td>
+          <td>Beppu → Yamanami → Aso → Kumamoto</td>
+          <td class="num">~200 กม.</td>
+          <td class="num">~12.5 L</td>
+          <td class="num">~22.0 L (42%)</td>
+          <td>จุดชมวิว Daikanbo และรูปปั้น One Piece ทั้ง 4 จุด <b>จอดฟรีทั้งหมด</b> (ยกเว้น Kusasenri ¥500) · รร. Grids (~¥2,000/คืน)</td>
+        </tr>
+        <tr style="background:var(--ok-bg)">
+          <td class="mono"><b>1/12 (อ.)</b></td>
+          <td>ปราสาท Kumamoto → Kikuchi Gorge → Robin → Sanji</td>
+          <td class="num">~140 กม.</td>
+          <td class="num">~8.5 L</td>
+          <td class="num">เหลือ ~13.5 L (26%)<br><b>👉 เติมเต็มถัง 100%</b></td>
+          <td><b>⛽ จุดเติมน้ำมันครั้งที่ 1 (เย็น 1/12):</b> แวะเติมเต็มถัง (~38.5 ลิตร ≈ ¥6,750 / 1,550 ฿) แถวถนนทางหลวงสาย 57 (เมือง Mashiki / ก่อนเข้าเมือง Kumamoto) เพื่อพร้อมลงเรือเช้าวันรุ่งขึ้น</td>
+        </tr>
+        <tr>
+          <td class="mono"><b>2/12 (พ.)</b></td>
+          <td>Kumamoto Port ⛴ Shimabara → Huis Ten Bosch</td>
+          <td class="num">~115 กม.</td>
+          <td class="num">~7.0 L</td>
+          <td class="num">~45.0 L (86%)</td>
+          <td>นำรถขึ้นเรือเฟอร์รี่ Ocean Arrow · ถึง Huis Ten Bosch จอดลานที่พัก/สวนสนุก (¥1,000/วัน หรือจอดฟรีสำหรับแขกโรงแรมในเครือ)</td>
+        </tr>
+        <tr>
+          <td class="mono"><b>3/12 (พฤ.)</b></td>
+          <td>HTB → จุดชมวิว Sasebo 6 จุด → Fukuoka Tenjin</td>
+          <td class="num">~145 กม.</td>
+          <td class="num">~9.0 L</td>
+          <td class="num">~36.0 L (69%)</td>
+          <td><b>จุดชมวิว Sasebo & ร้าน Sasebo Burger จอดฟรีครบทุกจุด!</b> · เย็นจอดรถไว้ที่ รร. Monterey Tenjin แล้ว<b>เดิน/นั่งรถไฟใต้ดินไปกินข้าวเย็น</b></td>
+        </tr>
+        <tr style="background:var(--ok-bg)">
+          <td class="mono"><b>4/12 (ศ.)</b></td>
+          <td>Nagahama → Nanzoin → Miyajidake → Marine World → คืนรถ Hakata</td>
+          <td class="num">~110 กม.</td>
+          <td class="num">~6.5 L</td>
+          <td class="num">เหลือ ~29.5 L (57%)<br><b>👉 เติมเต็มถังก่อนคืนรถ</b></td>
+          <td><b>⛽ จุดเติมน้ำมันครั้งที่ 2 (15:45 น. ก่อนคืนรถ):</b> เติมเต็มถัง (~22.5 ลิตร ≈ ¥3,950 / 910 ฿) ที่ปั๊ม ENEOS / Idemitsu รอบสถานี Hakata พร้อมเก็บใบเสร็จยื่นคืนรถ · จากนั้น<b>เดินไป Canal City</b></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><b>รวมระยะทางและค่าน้ำมันทั้งทริป (7 วัน)</b></td>
+          <td class="num"><b>~985 กม.</b></td>
+          <td class="num"><b>~61.0 L</b></td>
+          <td class="num"><b>~¥10,700</b><span class="thb">≈ 2,460 ฿</span></td>
+          <td>รวมค่าที่จอดรถทั้งทริป (โรงแรม 6 คืน + จุดท่องเที่ยว) ประมาณ <b>~¥11,500 (≈ 2,645 ฿)</b></td>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 </section>
 
@@ -1084,214 +1233,218 @@ const DAYS = [
   {
     d: "27/11", wd: "วันศุกร์", title: "ฟุกุโอกะ วันแรก (ยังไม่มีรถเช่า)",
     hotel: "KOKO HOTEL Fukuoka Tenjin", drive: "เดินทางด้วยรถบัส / แท็กซี่",
-    tollSum: "ไม่มีค่าทางด่วน (ยังไม่รับรถ)",
-    tollDetails: ["เดินทางในเมืองด้วยรถบัส แท็กซี่ หรือรถไฟใต้ดิน"],
+    tollSum: "ไม่มีค่าทางด่วน · น้ำมัน 0 L",
+    tollDetails: ["เดินทางในเมืองด้วยรถบัส แท็กซี่ หรือรถไฟใต้ดิน (ยังไม่ได้รับรถเช่า)"],
     roadSegments: [["hakata", "lalaport", "tenjin"]],
     embedRoute: ["hakata", "lalaport", "tenjin"],
     stops: [
-      { p: "hakata", t: "บ่าย", name: "นิดาช้อปปิ้งย่าน Hakata Station", sub: "เดินเล่นห้าง JR Hakata City / AMU Plaza Hakata" },
-      { p: "lalaport", t: "บ่ายแก่", name: "LaLaport Fukuoka", sub: "ถ่ายรูปหุ่นกันดั้ม RX-93ff ν Gundam ขนาดเท่าของจริง · ไป-กลับด้วยรถบัสหรือแท็กซี่จาก Hakata" },
-      { p: "tenjin", t: "ค่ำ", name: "เช็คอิน KOKO HOTEL Fukuoka Tenjin", sub: "ที่พักย่าน Tenjin จองแล้ว (¥21,758 · เฟิสจ่าย)" }
+      { p: "hakata", t: "บ่าย", name: "นิดาช้อปปิ้งย่าน Hakata Station", sub: "เดินเล่นห้าง JR Hakata City / AMU Plaza Hakata", park: "1.1 เดินเท้าในอาคารสถานี Hakata / 1.2 รถไฟใต้ดิน Kuko Line", parkType: "walk" },
+      { p: "lalaport", t: "บ่ายแก่", name: "LaLaport Fukuoka", sub: "ถ่ายรูปหุ่นกันดั้ม RX-93ff ν Gundam ขนาดเท่าของจริง", park: "1.2 รถบัส Nishitetsu จาก Hakata Bus Terminal ช่อง 13 (~20 นาที ¥260) หรือแท็กซี่ (~¥1,500)", parkType: "walk" },
+      { p: "tenjin", t: "ค่ำ", name: "เช็คอิน KOKO HOTEL Fukuoka Tenjin", sub: "ที่พักย่าน Tenjin จองแล้ว (¥21,758 · เฟิสจ่าย)", park: "1.2 นั่งบัส/แท็กซี่จาก LaLaport เข้า Tenjin · 1.1 เดินเที่ยวรอบย่าน Tenjin", parkType: "walk" }
     ],
     links: [["เส้นทาง Hakata → LaLaport → Tenjin", ["hakata", "lalaport", "tenjin"]]],
     notes: []
   },
   {
     d: "28/11", wd: "วันเสาร์", title: "Hakata → ตลาดปลา Karato (Shimonoseki) → Mojiko Retro → Beppu",
-    hotel: "Nishitetsu Resort Inn Beppu (คืนที่ 1)", drive: "~3 ชม. · 220 กม.",
-    tollSum: "ETC ~¥5,290 (≈ 1,217 ฿) | เงินสด ¥7,360",
+    hotel: "Nishitetsu Resort Inn Beppu (คืนที่ 1)", drive: "~3 ชม. · 220 กม. (ใช้น้ำมัน ~14 L)",
+    tollSum: "ETC ~¥5,290 (≈ 1,217 ฿) | น้ำมันเหลือ ~73% (38 L)",
     tollDetails: [
       "ช่วงที่ 1 (Hakata → Karato): ขึ้นด่าน Hakataekihigashi (Fukuoka Urban Expwy ¥630) เชื่อมเข้า Kyushu Expwy ที่ Fukuoka IC ข้ามสะพาน Kanmon ลงด่าน Shimonoseki IC (ETC วันเสาร์ ¥1,590 / เงินสด ¥2,450)",
       "ช่วงที่ 2 (Karato → Mojiko): ลอดอุโมงค์ใต้ทะเล Kanmon Tunnel (Route 2) ค่าผ่านทาง ¥230",
-      "ช่วงที่ 3 (Mojiko → Beppu): ขึ้นด่าน Mojiko IC → Kitakyushu JCT → Higashi-Kyushu Expwy ลงด่าน Beppu IC (ETC วันเสาร์ ¥2,840 / เงินสด ¥4,050)"
+      "ช่วงที่ 3 (Mojiko → Beppu): ขึ้นด่าน Mojiko IC → Kitakyushu JCT → Higashi-Kyushu Expwy ลงด่าน Beppu IC (ETC วันเสาร์ ¥2,840 / เงินสด ¥4,050)",
+      "⛽ ปริมาณน้ำมันวันนี้: รับรถเต็มถัง 52 L · ขับรวม ~220 กม. ใช้น้ำมัน ~14.0 L · สิ้นวันเหลือ ~38.0 L (73%) ยังไม่ต้องเติม"
     ],
     roadSegments: [["hakata", "karato", "mojiko", "beppuH"]],
     embedRoute: ["hakata", "karato", "mojiko", "beppuH"],
     stops: [
-      { p: "fuk", t: "08:55", name: "✈️ ส้มโอถึงสนามบินฟุกุโอกะ (อาคารระหว่างประเทศ)", sub: "ผ่าน ตม. และรับกระเป๋าประมาณ 45–60 นาที", num: false },
-      { p: "fuk", t: "09:45", name: "🚕 แท็กซี่จากสนามบินไป Hakata Station", sub: "ขึ้นที่ชั้น 1F อาคารระหว่างประเทศ (~15 นาที ~¥1,500) หรือบัส Nishitetsu ลงป้าย Hakata Chikushi Exit (~25 นาที ¥310)", num: false },
-      { p: "hakata", t: "10:30", name: "🚗 รับรถเช่าที่ Hakata Station", sub: "แจ้งร้านเช่ารถเผื่อเวลารับรถเป็น 10:30 น. พร้อมรับบัตร ETC Card (มื้อเช้าระหว่างรอหรือมื้อเย็นวันแรกแวะร้านแฮมเบิร์ก Kiwamiya สถานีฮากาตะได้)" },
-      { p: "karato", t: "12:00", name: "🍣 ตลาดปลา Karato Market (Shimonoseki)", sub: "เทศกาลแผงซูชิสุดสัปดาห์ Iki-iki Bakangai วันเสาร์เปิด 10:00–15:00 · ลองซูชิปลาปักเป้า (Fugu) สดๆ", leg: "Fukuoka Urban + Kyushu Expwy + สะพาน Kanmon ~1 ชม. 15 น.", toll: "ETC ¥2,220 (เงินสด ¥3,080)" },
-      { p: "mojiko", t: "14:00", name: "🏛️ Mojiko Retro", sub: "เดินเล่นชมอาคารสไตล์ยุโรปโบราณริมช่องแคบคัมมง และสะพานเปิด-ปิด Blue Wing Moji", leg: "ลอดอุโมงค์ใต้ทะเล Kanmon Tunnel ~15 น.", toll: "ค่าอุโมงค์ ¥230" },
-      { p: "beppuH", t: "17:30", name: "♨️ เช็คอิน Nishitetsu Resort Inn Beppu", sub: "ออกจาก Mojiko ~15:30 · ถึงเบปปุเข้าที่พัก แช่ออนเซ็น และทาน Toriten (ไก่ทอดเทมปุระของดังโออิตะ)", leg: "Higashi-Kyushu Expwy (Mojiko IC → Beppu IC) ~1 ชม. 45 น.", toll: "ETC ¥2,840 (เงินสด ¥4,050)" }
+      { p: "fuk", t: "08:55", name: "✈️ ส้มโอถึงสนามบินฟุกุโอกะ (อาคารระหว่างประเทศ)", sub: "ผ่าน ตม. และรับกระเป๋าประมาณ 45–60 นาที", park: "1.2 แท็กซี่หน้าอาคาร 1F (~15 นาที ¥1,500) หรือบัส Nishitetsu ไปสถานี Hakata (¥310)", parkType: "walk", num: false },
+      { p: "fuk", t: "09:45", name: "🚕 แท็กซี่จากสนามบินไป Hakata Station", sub: "ขึ้นที่ชั้น 1F อาคารระหว่างประเทศ (~15 นาที ~¥1,500) หรือบัส Nishitetsu ลงป้าย Hakata Chikushi Exit (~25 นาที ¥310)", park: "1.2 แท็กซี่ / รถบัสสนามบิน", parkType: "walk", num: false },
+      { p: "hakata", t: "10:30", name: "🚗 รับรถเช่า Nissan Serena e-Power ที่ Hakata Station", sub: "แจ้งร้านเช่ารถเผื่อเวลารับรถเป็น 10:30 น. พร้อมรับบัตร ETC Card (เช็คระดับน้ำมันเต็มถัง 100% = 52 ลิตร)", park: "🅿️ รับรถจากจุดจอดของบริษัทรถเช่า · ⛽ น้ำมันเต็มถัง 100% (52 L)", parkType: "free" },
+      { p: "karato", t: "12:00", name: "🍣 ตลาดปลา Karato Market (Shimonoseki)", sub: "เทศกาลแผงซูชิสุดสัปดาห์ Iki-iki Bakangai วันเสาร์เปิด 10:00–15:00 · ลองซูชิปลาปักเป้า (Fugu) สดๆ", leg: "Fukuoka Urban + Kyushu Expwy + สะพาน Kanmon ~1 ชม. 15 น.", toll: "ETC ¥2,220", park: "🅿️ มีอาคารจอดรถ Karato Market Parking (¥120/30 นาที · ฟรี 60 นาทีแรก) 💡 ทางเลือกหากคิวรถติดหน้าตลาดวันเสาร์: จอดรถฝั่ง Mojiko แล้วนั่งเรือข้ามฟาก Kanmon Ferry (1.2 เรือ 5 นาที ¥400) ข้ามมาตลาด Karato ได้เลย!", parkType: "paid" },
+      { p: "mojiko", t: "14:00", name: "🏛️ Mojiko Retro", sub: "เดินเล่นชมอาคารสไตล์ยุโรปโบราณริมช่องแคบคัมมง และสะพานเปิด-ปิด Blue Wing Moji", leg: "ลอดอุโมงค์ใต้ทะเล Kanmon Tunnel ~15 น.", toll: "ค่าอุโมงค์ ¥230", park: "🅿️ มีลานจอดรถกลางแจ้งรอบท่าเรือ (เช่น Mojiko Retro Parking ¥200–¥300/ชม. จอดรถตู้ Serena ได้สบาย) แล้ว 1.1 เดินเล่นรอบท่าเรือ", parkType: "paid" },
+      { p: "beppuH", t: "17:30", name: "♨️ เช็คอิน Nishitetsu Resort Inn Beppu", sub: "ออกจาก Mojiko ~15:30 · ถึงเบปปุเข้าที่พัก แช่ออนเซ็น และทาน Toriten (ไก่ทอดเทมปุระของดังโออิตะ)", leg: "Higashi-Kyushu Expwy (Mojiko IC → Beppu IC) ~1 ชม. 45 น.", toll: "ETC ¥2,840", park: "🅿️ ลานจอดรถกลางแจ้งของโรงแรม 56 คัน (¥800/คืน · ไม่จำกัดความสูง รถ Serena จอดได้สบาย) · มื้อเย็น 1.1 เดินไปร้านอาหารใกล้โรงแรม", parkType: "paid" }
     ],
     links: [["เส้นทางขับรถทั้งวัน (Hakata → Karato → Mojiko → Beppu)", ["hakata", "karato", "mojiko", "beppuH"]]],
     notes: [
+      ["ทิปส์ที่จอดรถตลาดปลา Karato วันเสาร์: ช่วงเที่ยงรถอาจต่อคิวเข้าตึกจอดหน้าตลาดยาว แนะนำเข้าจอดที่ลานจอดอาคารเทศบาล Shimonoseki (Shimonoseki City Hall Parking) ซึ่งอยู่ติดกันแล้ว 1.1 เดินข้ามถนน 3 นาทีถึงตลาด หรือจอดฝั่ง Mojiko แล้วนั่งเรือข้ามฟาก 5 นาทีก็ได้", 1],
       ["Hell of Beppu ย้ายจากเย็นวันนี้ไปเช้าวันที่ 29/11 เพราะบ่อนรกปิด 17:00 น. และวันนี้ถึง Beppu ราว 17:30 น."]
     ]
   },
   {
     d: "29/11", wd: "วันอาทิตย์", title: "ทัวร์บ่อนรกเบปปุ (Hell of Beppu) + Yufuin & ทะเลสาบ Kinrin",
-    hotel: "Nishitetsu Resort Inn Beppu (คืนที่ 2)", drive: "~1.5 ชม. · 55 กม.",
-    tollSum: "ETC ~¥1,140 (≈ 262 ฿) | เงินสด ¥1,620 (หรือวิ่งสาย 216 ฟรี)",
+    hotel: "Nishitetsu Resort Inn Beppu (คืนที่ 2)", drive: "~1.5 ชม. · 55 กม. (ใช้น้ำมัน ~3.5 L)",
+    tollSum: "ETC ~¥1,140 (≈ 262 ฿) | น้ำมันเหลือ ~66% (34.5 L)",
     tollDetails: [
       "ขาไป-ขากลับ Beppu IC ↔ Yufuin IC (Oita Expressway): ระยะทาง 23.8 กม. (~20 นาที) ค่าผ่านทางปกติเที่ยวละ ¥810 (ใช้ ETC วันอาทิตย์ลดเหลือเที่ยวละ ~¥570 · ไป-กลับรวม ~¥1,140)",
-      "ทางเลือกชมวิวฟรี: สามารถวิ่งทางหลวงแผ่นดินสาย 216/11 (Yamanami Highway) ผ่านจุดชมวิวภูเขา Yufu โดยไม่เสียค่าทางด่วน (~40 นาที)"
+      "⛽ ปริมาณน้ำมันวันนี้: ขับสั้น ~55 กม. ใช้น้ำมันเพียง ~3.5 L (ตอนลงเขาจาก Yufuin กลับ Beppu ระบบ e-Power ชาร์จไฟกลับแทบไม่ใช้น้ำมัน) · สิ้นวันเหลือ ~34.5 L (66%)"
     ],
     roadSegments: [["beppuH", "umi", "chinoike", "yunotsubo", "kinrin", "beppuH"]],
     embedRoute: ["beppuH", "umi", "chinoike", "kinrin", "beppuH"],
     stops: [
-      { p: "beppuH", t: "08:15", name: "ออกจากโรงแรม Nishitetsu Resort Inn Beppu", sub: "แนะนำออกเช้าเพราะวันอาทิตย์คนเยอะ", num: false },
-      { p: "umi", t: "08:30", name: "♨️ Umi Jigoku (บ่อทะเลสีฟ้า) + Oniishibozu Jigoku (บ่อโคลน)", sub: "บ่อเปิด 08:00–17:00 น. ทั้ง 2 บ่ออยู่ติดกัน ซื้อตั๋วแยกเฉพาะบ่อที่เข้าได้ ไม่ต้องซื้อพาสเหมา 7 บ่อ", leg: "ขับรถในเมือง Beppu ~15 น.", toll: "ทางธรรมดา (ฟรี)" },
-      { p: "chinoike", t: "10:00", name: "🩸 Chinoike Jigoku (บ่อนรกสีเลือด)", sub: "บ่อนรกสีแดงสดที่เก่าแก่ที่สุดในญี่ปุ่น มีบ่อแช่เท้าและของฝากขี้ผึ้งทาผิว", leg: "ขับรถ ~5 น.", toll: "ทางธรรมดา (ฟรี)" },
-      { p: "yunotsubo", t: "11:30", name: "🦉 Yufuin: ถนนคนเดิน Yunotsubo & หมู่บ้าน Floral Village", sub: "เดินเล่นหาของกินมื้อกลางวัน ขนมหวาน โคร็อกเกะ และแวะถ่ายรูปหมู่บ้านนกฮูก Yufuin Floral Village", leg: "Beppu → Yufuin (~35–40 น.)", toll: "Oita Expwy ETC ¥570 (หรือวิ่งสาย 216 ฟรี)" },
-      { p: "kinrin", t: "15:00", name: "🍂 ทะเลสาบ Kinrin (Kinrin Lake)", sub: "เดินต่อเนื่องจากสุดถนน Yunotsubo ชมวิวทะเลสาบและเสาโทริอิกลางน้ำ", leg: "เดินเท้า ~10 น." },
-      { p: "beppuH", t: "16:30", name: "♨️ กลับถึงโรงแรม Nishitetsu Resort Inn Beppu", sub: "พักผ่อนแช่ออนเซ็นและเดินหาของอร่อยในเมืองเบปปุ", leg: "Yufuin → Beppu (~35–40 น.)", toll: "Oita Expwy ETC ¥570 (หรือวิ่งสาย 216 ฟรี)" }
+      { p: "beppuH", t: "08:15", name: "ออกจากโรงแรม Nishitetsu Resort Inn Beppu", sub: "แนะนำออกเช้าเพราะวันอาทิตย์คนเยอะ", park: "⛽ น้ำมันคงเหลือตอนเช้า ~73% (38 L)", parkType: "free", num: false },
+      { p: "umi", t: "08:30", name: "♨️ Umi Jigoku (บ่อทะเลสีฟ้า) + Oniishibozu Jigoku (บ่อโคลน)", sub: "บ่อเปิด 08:00–17:00 น. ทั้ง 2 บ่ออยู่ติดกัน ซื้อตั๋วแยกเฉพาะบ่อที่เข้าได้ ไม่ต้องซื้อพาสเหมา 7 บ่อ", leg: "ขับรถในเมือง Beppu ~15 น.", toll: "ทางธรรมดา (ฟรี)", park: "🅿️ ที่จอดรถฟรี! ลานจอดขนาดใหญ่หน้า Umi Jigoku (~220 คัน) จอดที่เดียวแล้ว 1.1 เดินเที่ยวทั้ง Umi Jigoku และ Oniishibozu Jigoku ที่อยู่ติดกันได้เลย", parkType: "free" },
+      { p: "chinoike", t: "10:00", name: "🩸 Chinoike Jigoku (บ่อนรกสีเลือด)", sub: "บ่อนรกสีแดงสดที่เก่าแก่ที่สุดในญี่ปุ่น มีบ่อแช่เท้าและของฝากขี้ผึ้งทาผิว", leg: "ขับรถ ~5 น.", toll: "ทางธรรมดา (ฟรี)", park: "🅿️ ที่จอดรถฟรี! ลานจอดขนาดใหญ่หน้าบ่อ Chinoike (~120 คัน)", parkType: "free" },
+      { p: "yunotsubo", t: "11:30", name: "🦉 Yufuin: ถนนคนเดิน Yunotsubo & หมู่บ้าน Floral Village", sub: "เดินเล่นหาของกินมื้อกลางวัน ขนมหวาน โคร็อกเกะ และแวะถ่ายรูปหมู่บ้านนกฮูก Yufuin Floral Village", leg: "Beppu → Yufuin (~35–40 น.)", toll: "Oita Expwy ETC ¥570 (หรือวิ่งสาย 216 ฟรี)", park: "⚠️ ถนนคนเดิน Yunotsubo ห้ามนำรถเข้า! ให้จอดรถที่ลาน Coin Parking ริมทางเข้าถนน Yunotsubo หรือหน้าทะเลสาบ Kinrin (¥500–¥800/ครั้ง) แล้ว 1.1 เดินเท้าเที่ยวตลอดสาย", parkType: "paid" },
+      { p: "kinrin", t: "15:00", name: "🍂 ทะเลสาบ Kinrin (Kinrin Lake)", sub: "เดินต่อเนื่องจากสุดถนน Yunotsubo ชมวิวทะเลสาบและเสาโทริอิกลางน้ำ", leg: "เดินเท้า ~10 น.", park: "🚶 1.1 แนะนำเดินเท้าต่อเนื่องจากถนน Yunotsubo & Floral Village (~5–8 นาที) ไม่ต้องย้ายรถซ้ำสองรอบ!", parkType: "walk" },
+      { p: "beppuH", t: "16:30", name: "♨️ กลับถึงโรงแรม Nishitetsu Resort Inn Beppu", sub: "พักผ่อนแช่ออนเซ็นและเดินหาของอร่อยในเมืองเบปปุ", leg: "Yufuin → Beppu (~35–40 น.)", toll: "Oita Expwy ETC ¥570 (หรือวิ่งสาย 216 ฟรี)", park: "🅿️ จอดค้างคืนที่โรงแรม Nishitetsu Resort Inn Beppu (¥800/คืน)", parkType: "paid" }
     ],
     links: [["เส้นทางขับรถทั้งวัน (Beppu → Hell → Yufuin → Beppu)", ["beppuH", "umi", "chinoike", "kinrin", "beppuH"]]],
     notes: [
-      ["วันอาทิตย์นักท่องเที่ยวเยอะ การไปถึง Umi Jigoku ตอน 08:30 น. จะหาที่จอดรถและถ่ายรูปได้สบายที่สุด", 1]
+      ["กลยุทธ์ที่จอดรถ Yufuin วันอาทิตย์: จอดรถแค่จุดเดียวที่ลานจอดใกล้ Floral Village / Kinrin Lake (เหมาจ่าย ¥500–¥800) แล้วใช้ 1.1 เดินเท้าเที่ยวทั้งถนน Yunotsubo, หมู่บ้าน Floral Village และทะเลสาบ Kinrin จะสะดวกและไม่ต้องวนหาที่จอดใหม่", 1]
     ]
   },
   {
     d: "30/11", wd: "วันจันทร์", title: "Yamanami Highway → ภูเขาไฟ Aso → ตามล่าหมวกฟาง One Piece → Kumamoto",
-    hotel: "Grids Premium Hotel Kumamoto (คืนที่ 1)", drive: "~4 ชม. · 200 กม.",
-    tollSum: "¥0 (ฟรีตลอดสาย)",
+    hotel: "Grids Premium Hotel Kumamoto (คืนที่ 1)", drive: "~4 ชม. · 200 กม. (ใช้น้ำมัน ~12.5 L)",
+    tollSum: "¥0 (ฟรีตลอดสาย) | น้ำมันเหลือ ~42% (22 L)",
     tollDetails: [
-      "วันนี้วิ่งเส้นทางธรรมชาติ Yamanami Highway (Route 11) ต่อเนื่อง Milk Road และทางหลวงสาย 57/325 เข้าเมืองคุมาโมโตะ ไม่มีด่านเก็บเงินค่าทางด่วนตลอดทั้งวัน"
+      "วันนี้วิ่งเส้นทางธรรมชาติ Yamanami Highway (Route 11) ต่อเนื่อง Milk Road และทางหลวงสาย 57/325 เข้าเมืองคุมาโมโตะ ไม่มีด่านเก็บเงินค่าทางด่วนตลอดทั้งวัน",
+      "⛽ ปริมาณน้ำมันวันนี้: ขับขึ้น-ลงเขา ~200 กม. ใช้น้ำมัน ~12.5 L (ใช้โหมด e-Pedal Step ช่วงไหลลงเขา Aso ช่วยชาร์จแบตและเบรกด้วยมอเตอร์) · สิ้นวันเหลือ ~22.0 L (42%)"
     ],
     roadSegments: [["beppuH", "daikanbo", "usopp", "kusasenri", "franky", "nami", "zoro", "grids"]],
     embedRoute: ["beppuH", "daikanbo", "usopp", "kusasenri", "franky", "nami", "zoro", "grids"],
     stops: [
-      { p: "beppuH", t: "08:00", name: "เช็คเอาท์ออกจาก Beppu มุ่งหน้าสู่ Aso", sub: "ขับผ่านเส้นทางชมวิว Yamanami Highway ที่สวยที่สุดสายหนึ่งในคิวชู", num: false },
-      { p: "daikanbo", t: "10:00", name: "⛰️ จุดชมวิว Daikanbo + ถนน Milk Road", sub: "จุดชมวิวพาโนรามาขอบปล่องภูเขาไฟอะโซะ (Caldera) และเทือกเขาพระพุทธเจ้าปางไสยาสน์", leg: "Yamanami Highway ~1 ชม. 45 น.", toll: "ทางหลวงชมวิว (ฟรี)" },
-      { p: "usopp", t: "11:00", name: "🗿 รูปปั้น Usopp (หน้าสถานีรถไฟ JR Aso)", sub: "จุดเช็คอินรูปปั้นกลุ่มหมวกฟางจุดแรกของทริป", leg: "ขับลงเขา ~20 น.", toll: "ฟรี" },
-      { p: "kusasenri", t: "11:45", name: "🐎 ทุ่งหญ้า Kusasenri + มื้อกลางวัน Akaushi-don", sub: "ชมวิวทุ่งหญ้าเชิงภูเขาไฟ (หากมีเวลา) และทานข้าวหน้าเนื้อวัวแดงอะคาอุชิ (Akaushi-don) ของดังเมือง Aso", leg: "Aso Panorama Line ~25 น.", toll: "ฟรี" },
-      { p: "franky", t: "14:00", name: "🗿 รูปปั้น Franky (หน้าสถานีรถไฟ Takamori)", sub: "ถ่ายรูปคู่กับแฟรงกี้และขบวนรถไฟสาย Minamiaso", leg: "ขับอ้อมลงฝั่งใต้ ~35 น.", toll: "ฟรี" },
-      { p: "nami", t: "15:00", name: "🗿 รูปปั้น Nami (ตลาดฟาร์ม Moe no Sato, Nishihara)", sub: "แวะถ่ายรูปนามิและซื้อซอฟต์ครีม/ผลไม้ท้องถิ่น", leg: "ขับรถ ~25 น.", toll: "ฟรี" },
-      { p: "zoro", t: "15:40", name: "🗿 รูปปั้น Zoro (สวนสาธารณะ Ozu Central Park)", sub: "อยู่ริมทางผ่านก่อนเข้าตัวเมือง Kumamoto", leg: "ขับรถ ~20 น.", toll: "ฟรี" },
-      { p: "grids", t: "16:30", name: "🏨 เช็คอิน Grids Premium Hotel Kumamoto", sub: "เข้าที่พักใจกลางเมือง Kumamoto เดินไปย่านช้อปปิ้ง Shimotori ได้สะดวก", leg: "เข้าเมือง Kumamoto ~40 น.", toll: "ฟรี" }
+      { p: "beppuH", t: "08:00", name: "เช็คเอาท์ออกจาก Beppu มุ่งหน้าสู่ Aso", sub: "ขับผ่านเส้นทางชมวิว Yamanami Highway ที่สวยที่สุดสายหนึ่งในคิวชู", park: "⛽ น้ำมันคงเหลือตอนเช้า ~66% (34.5 L) เพียงพอสำหรับขึ้น-ลงเขา Aso สบายๆ", parkType: "free", num: false },
+      { p: "daikanbo", t: "10:00", name: "⛰️ จุดชมวิว Daikanbo + ถนน Milk Road", sub: "จุดชมวิวพาโนรามาขอบปล่องภูเขาไฟอะโซะ (Caldera) และเทือกเขาพระพุทธเจ้าปางไสยาสน์", leg: "Yamanami Highway ~1 ชม. 45 น.", toll: "ทางหลวงชมวิว (ฟรี)", park: "🅿️ ที่จอดรถฟรี! มีลานจอดรถบนยอดจุดชมวิวหลายลาน แล้ว 1.1 เดินขึ้นเนินชมวิว ~5 นาที", parkType: "free" },
+      { p: "usopp", t: "11:00", name: "🗿 รูปปั้น Usopp (หน้าสถานีรถไฟ JR Aso)", sub: "จุดเช็คอินรูปปั้นกลุ่มหมวกฟางจุดแรกของทริป", leg: "ขับลงเขา ~20 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดหน้าสถานี JR Aso / Michi-no-Eki Aso จอดแล้วเดินถ่ายรูปได้เลย", parkType: "free" },
+      { p: "kusasenri", t: "11:45", name: "🐎 ทุ่งหญ้า Kusasenri + มื้อกลางวัน Akaushi-don", sub: "ชมวิวทุ่งหญ้าเชิงภูเขาไฟ (หากมีเวลา) และทานข้าวหน้าเนื้อวัวแดงอะคาอุชิ (Akaushi-don) ของดังเมือง Aso", leg: "Aso Panorama Line ~25 น.", toll: "ฟรี", park: "🅿️ ลานจอดรถขนาดใหญ่หน้าทุ่งหญ้า Kusasenri (ค่าจอดรถยนต์ ¥500/ครั้ง)", parkType: "paid" },
+      { p: "franky", t: "14:00", name: "🗿 รูปปั้น Franky (หน้าสถานีรถไฟ Takamori)", sub: "ถ่ายรูปคู่กับแฟรงกี้และขบวนรถไฟสาย Minamiaso", leg: "ขับอ้อมลงฝั่งใต้ ~35 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดรถหน้าสถานีรถไฟ Takamori", parkType: "free" },
+      { p: "nami", t: "15:00", name: "🗿 รูปปั้น Nami (ตลาดฟาร์ม Moe no Sato, Nishihara)", sub: "แวะถ่ายรูปนามิและซื้อซอฟต์ครีม/ผลไม้ท้องถิ่น", leg: "ขับรถ ~25 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดขนาดใหญ่ของศูนย์ผลผลิตการเกษตร Tawara-yama Moe no Sato", parkType: "free" },
+      { p: "zoro", t: "15:40", name: "🗿 รูปปั้น Zoro (สวนสาธารณะ Ozu Central Park)", sub: "อยู่ริมทางผ่านก่อนเข้าตัวเมือง Kumamoto", leg: "ขับรถ ~20 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดรถสำหรับผู้มาชมรูปปั้น Zoro ข้างสวนสาธารณะ Ozu", parkType: "free" },
+      { p: "grids", t: "16:30", name: "🏨 เช็คอิน Grids Premium Hotel Kumamoto", sub: "เข้าที่พักใจกลางเมือง Kumamoto เดินไปย่านช้อปปิ้ง Shimotori ได้สะดวก", leg: "เข้าเมือง Kumamoto ~40 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถโรงแรม/ลานพันธมิตร (~¥1,500–¥2,000/คืน · แจ้งพนักงานว่าเป็นรถตู้ Serena ความสูง 1.87 ม. เพื่อเข้าจอดลานพื้นราบ/ตึกจอดที่รองรับรถสูง) · มื้อเย็น 1.1 เดินในย่าน Shimotori", parkType: "paid" }
     ],
     links: [
       ["ช่วงเช้า: Beppu → Daikanbo → Usopp → Kusasenri", ["beppuH", "daikanbo", "usopp", "kusasenri"]],
       ["ช่วงบ่าย: Kusasenri → Franky → Nami → Zoro → โรงแรม", ["kusasenri", "franky", "nami", "zoro", "grids"]]
     ],
     notes: [
-      ["พิพิธภัณฑ์ KIOKU ที่ตั้งรูปปั้น Robin ปิดทำการทุกวันจันทร์ จึงย้าย Robin ไปเก็บช่วงบ่ายวันอังคารที่ 1/12 แทน"],
-      ["ช่วงปลาย พ.ย. พระอาทิตย์ตกเร็ว (~17:15 น.) การลงจากโซนภูเขา Aso ก่อน 16:00 น. จะขับปลอดภัยและง่ายกว่ามาก", 1],
+      ["จุดแวะโซน Aso และรูปปั้น One Piece ทั้ง 4 จุดวันนี้มีลานจอดรถฟรีครบทุกจุด (ยกเว้นลานชมวิวบน Kusasenri ¥500)", 1],
       ["ปากปล่องภูเขาไฟ Nakadake ยังปิดเข้าชมระยะใกล้ แต่จุดชมวิว Daikanbo และทุ่งหญ้า Kusasenri เปิดให้เที่ยวได้ตามปกติ"]
     ]
   },
   {
-    d: "1/12", wd: "วันอังคาร", title: "Kumamoto: ปราสาท, Luffy, Chopper + เลือกเที่ยว Kikuchi Gorge หรือ Gokanosho + Robin & Sanji",
-    hotel: "Grids Premium Hotel Kumamoto (คืนที่ 2)", drive: "ทางเลือก A: ~3 ชม. (140 กม.) | ทางเลือก B: ~4.5 ชม. (195 กม.)",
-    tollSum: "¥0 (ฟรี) หรือทางเลือก B ~¥450",
+    d: "1/12", wd: "วันอังคาร", title: "Kumamoto: ปราสาท, Luffy, Chopper + เลือกเที่ยว Kikuchi Gorge หรือ Gokanosho + Robin & Sanji (+ เติมน้ำมันครั้งที่ 1)",
+    hotel: "Grids Premium Hotel Kumamoto (คืนที่ 2)", drive: "ทางเลือก A: ~3 ชม. (140 กม. · ใช้น้ำมัน ~8.5 L)",
+    tollSum: "ทางด่วน ¥0 | ⛽ เย็นนี้แวะเติมน้ำมันเต็มถังครั้งที่ 1 (~38.5 L)",
     tollDetails: [
       "ทางเลือก A (หุบเขา Kikuchi Gorge - แนะนำ): วิ่งเป็นวงกลมขึ้นเหนือไป Kikuchi Gorge (สาย 387) → ลัดลงมา Minamiaso (Robin) → ผ่าน Mashiki (Sanji) → กลับเข้าเมืองทางหลวงสาย 57 (ฟรีตลอดสาย ~140 กม.)",
-      "ทางเลือก B (หุบเขา Gokanosho - สะพานแขวน Momigi): จากในเมืองลงใต้ไปหุบเขา Gokanosho (สาย 445) → ย้อนขึ้นมาแวะ Sanji (Mashiki) → ไป Robin (Minamiaso) ก่อน 17:00 น. (อาจใช้ทางด่วนช่วงสั้น Mifune IC ~¥450 เพื่อทำเวลา)"
+      "⛽ แผนเติมน้ำมันครั้งที่ 1 (สำคัญ!): ช่วงบ่ายแก่วันนี้น้ำมันจะลดเหลือราว ~25% (~13.5 L) แนะนำให้แวะปั๊มน้ำมันริมทางหลวงสาย 57 (แถวเมือง Mashiki หลังถ่ายรูป Sanji หรือก่อนเข้าตัวเมือง Kumamoto) เติม Regular (หัวสีแดง) เต็มถัง (~38.5 ลิตร ≈ ¥6,750 / 1,550 ฿) เพื่อพร้อมลงเรือเช้าพรุ่งนี้โดยไม่ต้องเสียเวลาหาปั๊ม"
     ],
     roadSegments: [["castle", "kokutei", "luffy", "chopper", "kikuchi", "robin", "sanji", "grids"]],
     altRoadSegments: [["castle", "kokutei", "luffy", "chopper", "gokanosho", "sanji", "robin", "grids"]],
     embedRoute: ["castle", "luffy", "chopper", "kikuchi", "robin", "sanji", "grids"],
     stops: [
-      { p: "castle", t: "09:00", name: "🏯 ปราสาทคุมาโมโตะ (Kumamoto Castle)", sub: "เปิด 09:00 น. · เดินชมหอคอยปราสาทหลักและทางเดินลอยฟ้า (บางโซนกำแพงหินยังอยู่ระหว่างบูรณะ)", leg: "จากโรงแรม ~10 น.", toll: "ฟรี" },
-      { p: "kokutei", t: "10:30", name: "🍜 มื้อกลางวันเร็ว: ร้านราเมน Kokutei (黒亭)", sub: "ราเมนซุปกระดูกหมูน้ำมันกระเทียมดำต้นตำรับคุมาโมโตะ (เปิด 10:30 น. ทานมื้อเที่ยงเร็วเพื่อมีเวลาเที่ยวหุบเขาช่วงบ่ายเต็มที่)", leg: "~10 น.", toll: "ฟรี" },
-      { p: "luffy", t: "11:30", name: "🗿 รูปปั้น Luffy (หน้าศาลากลางจังหวัด Kumamoto)", sub: "ถ่ายรูปกัปตันลูฟี่ท่ามกลางทางเดินต้นแปะก๊วยสีเหลืองทองหน้าศาลากลาง", leg: "ขับรถ ~15 น.", toll: "ฟรี" },
-      { p: "chopper", t: "12:00", name: "🗿 รูปปั้น Chopper (หน้าสวนสัตว์และสวนพฤกษศาสตร์คุมาโมโตะ)", sub: "รูปปั้นช็อปเปอร์ตั้งอยู่บริเวณลานด้านหน้าทางเข้าสวนสัตว์ (ไม่ต้องเสียค่าเข้าสวนสัตว์)", leg: "ขับรถ ~10 น.", toll: "ฟรี" },
-      { p: "kikuchi", t: "13:15 (ทางเลือก A)", name: "🍁 [ทางเลือก A - แนะนำ] หุบเขาคิคุจิ (Kikuchi Gorge / 菊池渓谷)", sub: "เดินชมลำธารน้ำตกใสและใบไม้เปลี่ยนสี (~45–60 นาที) ข้อดี: ถนนขับง่ายและอยู่ทางเหนือ เชื่อมต่อไปยังรูปปั้น Robin ที่ Minamiaso เป็นวงกลมได้พอดีโดยไม่ย้อนทาง", leg: "ทางเลือก A: ขับจาก Chopper ขึ้นเหนือ ~1 ชม.", toll: "ฟรี" },
-      { p: "gokanosho", t: "13:30 (ทางเลือก B)", name: "🌉 [ทางเลือก B - สายลุยเขา] หุบเขาโกะคาโนะโช (Gokanosho / 五家荘)", sub: "ชมสะพานแขวนไม้คู่ Momigi (籾木吊橋) และน้ำตก Sendan Todoroki กลางหุบเขาลึกทางใต้ ข้อควรระวัง: ถนนสาย 445 บางช่วงแคบคดเคี้ยว ใช้เวลาขับไป-กลับนานกว่า Kikuchi ~1.5 ชม.", leg: "ทางเลือก B: ขับจาก Chopper ลงใต้ ~1 ชม. 20 น.", toll: "ฟรี (หรือด่วน Mifune ¥450)" },
-      { p: "robin", t: "15:15", name: "🗿 รูปปั้น Robin (พิพิธภัณฑ์แผ่นดินไหว KIOKU, Minamiaso)", sub: "เปิด 09:00–17:00 น. (หยุดวันจันทร์) ชมซากอาคารมหาวิทยาลัย Tokai เดิมและรูปปั้นโรบิน (ต้องไปถึงก่อนพิพิธภัณฑ์ปิด 17:00 น.)", leg: "จาก Kikuchi ~45 น. (หรือจาก Gokanosho ~1 ชม. 30 น.)", toll: "ฟรี" },
-      { p: "sanji", t: "16:30", name: "🗿 รูปปั้น Sanji (ศูนย์กีฬา Mina Terrace เมือง Mashiki)", sub: "แวะถ่ายรูปกุ๊กซันจิในเมือง Mashiki ซึ่งอยู่ริมทางผ่านขากลับเข้าเมือง Kumamoto (ลานกลางแจ้งแวะถ่ายรูปได้ถึงเย็น)", leg: "ทางหลวงสาย 57 ~35 น.", toll: "ฟรี" },
-      { p: "grids", t: "17:30", name: "🥩 กลับโรงแรม Grids Kumamoto · มื้อเย็นย่าน Shimotori", sub: "มื้อเย็นแนะนำลองเนื้อม้าซาชิมิ (Basashi) หรือสเต็กเนื้อวัวแดง Akaushi", leg: "ขับกลับเข้าเมือง ~30 น.", toll: "ฟรี" }
+      { p: "castle", t: "09:00", name: "🏯 ปราสาทคุมาโมโตะ (Kumamoto Castle)", sub: "เปิด 09:00 น. · เดินชมหอคอยปราสาทหลักและทางเดินลอยฟ้า (บางโซนกำแพงหินยังอยู่ระหว่างบูรณะ)", leg: "จากโรงแรม ~10 น.", toll: "ฟรี", park: "🅿️ แนะนำจอดที่ลาน Ninomaru Parking Lot (二の丸駐車場 · ลานกลางแจ้งขนาดใหญ่ รถตู้ Serena จอดง่าย · 2 ชม. แรก ¥400 ชม. ต่อไป ¥200) หรือ 1.1 เดินจากโรงแรม Grids ~12 นาที", parkType: "paid" },
+      { p: "kokutei", t: "10:30", name: "🍜 มื้อกลางวันเร็ว: ร้านราเมน Kokutei (黒亭)", sub: "ราเมนซุปกระดูกหมูน้ำมันกระเทียมดำต้นตำรับคุมาโมโตะ (เปิด 10:30 น. ทานมื้อเที่ยงเร็วเพื่อมีเวลาเที่ยวหุบเขาช่วงบ่ายเต็มที่)", leg: "~10 น.", toll: "ฟรี", park: "🅿️ หากไปสาขาหลัก Nihongi มีที่จอดรถฟรีของร้าน (~18 คัน) · แต่หากเลือกทานสาขา Shimotori จะไม่มีที่จอดรถ ให้ใช้ 1.1 เดินจากโรงแรม/ปราสาทแทน", parkType: "free" },
+      { p: "luffy", t: "11:30", name: "🗿 รูปปั้น Luffy (หน้าศาลากลางจังหวัด Kumamoto)", sub: "ถ่ายรูปกัปตันลูฟี่ท่ามกลางทางเดินต้นแปะก๊วยสีเหลืองทองหน้าศาลากลาง", leg: "ขับรถ ~15 น.", toll: "ฟรี", park: "🅿️ จอดรถที่ลานจอดผู้มาติดต่อศาลากลางจังหวัด (Kumamoto Prefectural Office Parking · วันธรรมดาต้องรับบัตรจอด หรือจอด Coin Parking ฝั่งตรงข้าม ¥100–200/ชม. แล้ว 1.1 เดินเข้ามาที่ลานแปะก๊วย)", parkType: "paid" },
+      { p: "chopper", t: "12:00", name: "🗿 รูปปั้น Chopper (หน้าสวนสัตว์และสวนพฤกษศาสตร์คุมาโมโตะ)", sub: "รูปปั้นช็อปเปอร์ตั้งอยู่บริเวณลานด้านหน้าทางเข้าสวนสัตว์ (ไม่ต้องเสียค่าเข้าสวนสัตว์)", leg: "ขับรถ ~10 น.", toll: "ฟรี", park: "🅿️ ลานจอดรถหน้าสวนสัตว์ Kumamoto City Zoo (วันธรรมดา จันทร์–ศุกร์ จอดฟรี! เสาร์–อาทิตย์ ¥200)", parkType: "free" },
+      { p: "kikuchi", t: "13:15 (ทางเลือก A)", name: "🍁 [ทางเลือก A - แนะนำ] หุบเขาคิคุจิ (Kikuchi Gorge / 菊池渓谷)", sub: "เดินชมลำธารน้ำตกใสและใบไม้เปลี่ยนสี (~45–60 นาที) ข้อดี: ถนนขับง่ายและอยู่ทางเหนือ เชื่อมต่อไปยังรูปปั้น Robin ที่ Minamiaso เป็นวงกลมได้พอดีโดยไม่ย้อนทาง", leg: "ทางเลือก A: ขับจาก Chopper ขึ้นเหนือ ~1 ชม.", toll: "ฟรี", park: "🅿️ มีลานจอดรถทางการ Kikuchi Gorge Parking 3 ลาน (ค่าจอดรถยนต์ ¥300 + ค่าบำรุงรักษาธรรมชาติคนละ ¥300) จอดแล้ว 1.1 เดินเลียบลำธาร", parkType: "paid" },
+      { p: "gokanosho", t: "13:30 (ทางเลือก B)", name: "🌉 [ทางเลือก B - สายลุยเขา] หุบเขาโกะคาโนะโช (Gokanosho / 五家荘)", sub: "ชมสะพานแขวนไม้คู่ Momigi (籾木吊橋) และน้ำตก Sendan Todoroki กลางหุบเขาลึกทางใต้ ข้อควรระวัง: ถนนสาย 445 บางช่วงแคบคดเคี้ยว ใช้เวลาขับไป-กลับนานกว่า Kikuchi ~1.5 ชม.", leg: "ทางเลือก B: ขับจาก Chopper ลงใต้ ~1 ชม. 20 น.", toll: "ฟรี (หรือด่วน Mifune ¥450)", park: "🅿️ ที่จอดรถฟรี! ลานจอดรถหน้าสะพานแขวน Momigi (籾木吊橋駐車場) และลานจอดน้ำตก Sendan Todoroki", parkType: "free" },
+      { p: "robin", t: "15:15", name: "🗿 รูปปั้น Robin (พิพิธภัณฑ์แผ่นดินไหว KIOKU, Minamiaso)", sub: "เปิด 09:00–17:00 น. (หยุดวันจันทร์) ชมซากอาคารมหาวิทยาลัย Tokai เดิมและรูปปั้นโรบิน (ต้องไปถึงก่อนพิพิธภัณฑ์ปิด 17:00 น.)", leg: "จาก Kikuchi ~45 น. (หรือจาก Gokanosho ~1 ชม. 30 น.)", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดรถขนาดใหญ่ของพิพิธภัณฑ์ KIOKU (รองรับได้กว่า 200 คัน)", parkType: "free" },
+      { p: "sanji", t: "16:30", name: "🗿 รูปปั้น Sanji (ศูนย์กีฬา Mina Terrace เมือง Mashiki) + ⛽ แวะเติมน้ำมัน", sub: "แวะถ่ายรูปกุ๊กซันจิในเมือง Mashiki แล้วแวะปั๊มน้ำมันริมทางหลวงสาย 57 เติมเต็มถังครั้งที่ 1", leg: "ทางหลวงสาย 57 ~35 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดศูนย์กีฬา Mashiki · ⛽ แวะปั๊ม ENEOS/Idemitsu ถนนสาย 57 เติม Regular เต็มถัง (~38.5 L ≈ ¥6,750)", parkType: "free" },
+      { p: "grids", t: "17:30", name: "🥩 กลับโรงแรม Grids Kumamoto · มื้อเย็นย่าน Shimotori", sub: "มื้อเย็นแนะนำลองเนื้อม้าซาชิมิ (Basashi) หรือสเต็กเนื้อวัวแดง Akaushi", leg: "ขับกลับเข้าเมือง ~30 น.", toll: "ฟรี", park: "🅿️ เก็บรถเข้าที่จอดโรงแรม Grids (~¥2,000/คืน) แล้ว 1.1 เดินเท้าไปทานมื้อเย็นในย่านอาเคด Shimotori / Kamitori (ไม่ต้องเอารถออก)", parkType: "walk" }
     ],
     links: [
       ["เส้นทาง A (แนะนำ): ไปหุบเขา Kikuchi Gorge → Robin → Sanji", ["castle", "luffy", "chopper", "kikuchi", "robin", "sanji", "grids"]],
       ["เส้นทาง B (ทางเลือก): ไปสะพานแขวน Gokanosho → Sanji → Robin", ["castle", "luffy", "chopper", "gokanosho", "sanji", "robin", "grids"]]
     ],
     notes: [
-      ["เปรียบเทียบ 2 ทางเลือก: Kikuchi Gorge (ทางเลือก A) ขับเป็นวงกลมขึ้นเหนือแล้ววนลงมาหา Robin ได้สมูทมาก (รวมขับรถ ~3 ชม.) ส่วน Gokanosho (ทางเลือก B) วิวสะพานแขวนสวยอลังการแต่อยู่คนละทิศทางใต้และทางขึ้นเขาแคบ ต้องออกเดินทางไวเพื่อกลับมาให้ทัน Robin ก่อน 17:00 น.", 1],
-      ["บนแผนที่ของวันนี้ เส้นสีน้ำเงินคือทางเลือก A (Kikuchi Gorge) และเส้นประสีม่วงคือทางเลือก B (Gokanosho) สามารถคลิกที่หมุดทั้งสองแห่งเพื่อเทียบตำแหน่งได้เลย"]
+      ["⛽ ทำไมต้องเติมน้ำมันเย็นวันนี้ (1/12): เพราะพรุ่งนี้เช้า (2/12) ต้องรีบไปท่าเรือ Kumamoto Port ให้ทันเรือรอบ 09:25 น. การเติมน้ำมันเต็มถังไว้ตั้งแต่เย็นวันที่ 1/12 จะทำให้เช้าวันที่ 2/12 ขับตรงไปท่าเรือได้ทันทีแบบสบายใจ", 1],
+      ["เปรียบเทียบ 2 ทางเลือก: Kikuchi Gorge (ทางเลือก A) ขับเป็นวงกลมขึ้นเหนือแล้ววนลงมาหา Robin ได้สมูทมาก ส่วน Gokanosho (ทางเลือก B) วิวสะพานแขวนสวยแต่อยู่ทางใต้และถนนแคบกว่า"]
     ]
   },
   {
     d: "2/12", wd: "วันพุธ", title: "Kumamoto Port ⛴ เรือเฟอร์รี่ไป Shimabara → ตรงดิ่งสู่ Huis Ten Bosch (เที่ยวเต็มวันทั้งกลางวัน & กลางคืน)",
-    hotel: "Huis Ten Bosch", drive: "~2 ชม. · 115 กม. + เรือ 30 นาที",
-    tollSum: "ทางด่วน ETC ~¥2,260 (≈ 520 ฿) + ค่าเรือเฟอร์รี่ ~¥8,300 (≈ 1,910 ฿)",
+    hotel: "Huis Ten Bosch", drive: "~2 ชม. · 115 กม. + เรือ 30 นาที (ใช้น้ำมัน ~7 L)",
+    tollSum: "ทางด่วน ETC ~¥2,260 + ค่าเรือ ~¥8,300 | น้ำมันเหลือ ~86% (45 L)",
     tollDetails: [
-      "ค่าเรือเฟอร์รี่ Ocean Arrow (Kumamoto Port → Shimabara Port): รถยนต์ยาว 4–5 ม. (รวมคนขับ) ¥5,100 + ผู้โดยสารผู้ใหญ่เพิ่ม 2 คน (¥1,600 × 2) = รวม ¥8,300",
-      "ทางด่วน (Shimabara → Huis Ten Bosch): ขับเลียบชายฝั่งไปขึ้นด่าน Isahaya IC (Nagasaki Expwy) → Takeo JCT → Nishi-Kyushu Expwy ลงด่าน Sasebo-Daito IC (ETC ¥2,260 / เงินสด ¥2,960 · หรือวิ่งทางหลวงสาย 207/205 เลียบอ่าว Omura ฟรี)"
+      "ค่าเรือเฟอร์รี่ Ocean Arrow (Kumamoto Port → Shimabara Port): รถตู้ Nissan Serena ยาว ~4.76 ม. อยู่ในพิกัด 4–5 ม. (รวมคนขับ) ¥5,100 + ผู้โดยสารผู้ใหญ่เพิ่ม 2 คน (¥1,600 × 2) = รวม ¥8,300",
+      "ทางด่วน (Shimabara → Huis Ten Bosch): ขับเลียบชายฝั่งไปขึ้นด่าน Isahaya IC (Nagasaki Expwy) → Takeo JCT → Nishi-Kyushu Expwy ลงด่าน Sasebo-Daito IC (ETC ¥2,260 / เงินสด ¥2,960)",
+      "⛽ ปริมาณน้ำมันวันนี้: ออกเดินทางด้วยน้ำมันเต็มถัง 100% (52 L) · ขับรวม ~115 กม. ใช้น้ำมัน ~7.0 L · สิ้นวันเหลือ ~45.0 L (86%)"
     ],
     roadSegments: [["grids", "kport"], ["shimabara", "htb"]],
     ferrySegment: ["kport", "shimabara"],
     embedRoute: ["shimabara", "htb"],
     stops: [
-      { p: "grids", t: "08:30", name: "เช็คเอาท์ออกจากโรงแรมไปท่าเรือ Kumamoto Port", sub: "ต้องไปถึงท่าเรือเพื่อทำเรื่องนำรถลงเรืออย่างน้อย 20–30 นาทีก่อนเวลาเรือออก", num: false },
-      { p: "kport", t: "09:00", name: "⚓ ท่าเรือ Kumamoto Port", sub: "เตรียมใบจองเรือและสมุดทะเบียนรถเช่าเพื่อเช็คอินขึ้นเรือ", leg: "ขับรถ ~30 น.", toll: "ทางธรรมดา (ฟรี)" },
-      { p: "shimabara", t: "09:25", name: "⛴ เรือเฟอร์รี่ Ocean Arrow → ท่าเรือ Shimabara (ถึง 09:57)", sub: "เรือเร็วข้ามอ่าว Ariake ใช้เวลาเพียง 30 นาที บนเรือมีจุดชมวิวและให้อาหารนกนางนวล", ferry: true, leg: "เรือเฟอร์รี่ Ocean Arrow ~30 น.", toll: "ค่าเรือ รถ+3 คน ~¥8,300" },
-      { p: "htb", t: "11:30", name: "🌷 ถึง Huis Ten Bosch (เที่ยวเต็มวันทั้งกลางวัน & กลางคืน)", sub: "ฝากกระเป๋า/เช็คอินโรงแรม แล้วเพลิดเพลินกับโซนกลางวัน: กังหันลมดอกไม้ ล่องเรือคลอง Sky Carousel เครื่องเล่น VR และโซน Miffy", leg: "Shimabara → Isahaya IC → Huis Ten Bosch ~1 ชม. 30 น.", toll: "ETC ¥2,260 (เงินสด ¥2,960)" },
-      { p: "htb", t: "17:30", name: "✨ ชมงานไฟประดับ Kingdom of Lights & โชว์น้ำพุยามค่ำคืน", sub: "เดินชมเทศกาลประดับไฟที่ใหญ่ที่สุดในญี่ปุ่น 3D Projection Mapping และพักผ่อนใน Huis Ten Bosch (จองแล้ว ¥15,723 · ส้มจ่าย)", num: false }
+      { p: "grids", t: "08:30", name: "เช็คเอาท์ออกจากโรงแรมไปท่าเรือ Kumamoto Port", sub: "ต้องไปถึงท่าเรือเพื่อทำเรื่องนำรถลงเรืออย่างน้อย 20–30 นาทีก่อนเวลาเรือออก", park: "⛽ น้ำมันเต็มถัง ~100% (เติมไว้ตั้งแต่เมื่อวานเย็น)", parkType: "free", num: false },
+      { p: "kport", t: "09:00", name: "⚓ ท่าเรือ Kumamoto Port", sub: "เตรียมใบจองเรือและสมุดทะเบียนรถเช่าเพื่อเช็คอินขึ้นเรือ", leg: "ขับรถ ~30 น.", toll: "ทางธรรมดา (ฟรี)", park: "🅿️ ขับรถเข้าช่องรอขึ้นเรือเฟอร์รี่ Ocean Arrow ตามป้ายบอกทางได้เลย", parkType: "free" },
+      { p: "shimabara", t: "09:25", name: "⛴ เรือเฟอร์รี่ Ocean Arrow → ท่าเรือ Shimabara (ถึง 09:57)", sub: "เรือเร็วข้ามอ่าว Ariake ใช้เวลาเพียง 30 นาที บนเรือมีจุดชมวิวและให้อาหารนกนางนวล", ferry: true, leg: "เรือเฟอร์รี่ Ocean Arrow ~30 น.", toll: "ค่าเรือ รถ+3 คน ~¥8,300", park: "⛴ จอดรถดึงเบรกมือในระวางเรือ แล้ว 1.1 เดินขึ้นห้องโดยสารชั้นบนชมวิวทะเล", parkType: "walk" },
+      { p: "htb", t: "11:30", name: "🌷 ถึง Huis Ten Bosch (เที่ยวเต็มวันทั้งกลางวัน & กลางคืน)", sub: "ฝากกระเป๋า/เช็คอินโรงแรม แล้วเพลิดเพลินกับโซนกลางวัน: กังหันลมดอกไม้ ล่องเรือคลอง Sky Carousel เครื่องเล่น VR และโซน Miffy", leg: "Shimabara → Isahaya IC → Huis Ten Bosch ~1 ชม. 30 น.", toll: "ETC ¥2,260 (เงินสด ¥2,960)", park: "🅿️ ลานจอดรถ Huis Ten Bosch (หากพักโรงแรม Official ของ HTB จอดฟรีที่ลานจอดผู้เข้าพักพร้อมรถบัสรับ-ส่ง / ลานจอดทั่วไป ¥1,000/วัน) · ภายในสวนสนุกใช้ 1.1 เดินเท้า / 1.2 รถบัสและเรือคลองภายในปาร์ค", parkType: "paid" },
+      { p: "htb", t: "17:30", name: "✨ ชมงานไฟประดับ Kingdom of Lights & โชว์น้ำพุยามค่ำคืน", sub: "เดินชมเทศกาลประดับไฟที่ใหญ่ที่สุดในญี่ปุ่น 3D Projection Mapping และพักผ่อนใน Huis Ten Bosch (จองแล้ว ¥15,723 · ส้มจ่าย)", park: "🚶 1.1 เดินเที่ยวและทานอาหารเย็นภายใน Huis Ten Bosch ได้เลยโดยไม่ต้องใช้รถ", parkType: "walk", num: false }
     ],
     links: [
       ["ช่วงเช้า: โรงแรม → ท่าเรือ Kumamoto Port", ["grids", "kport"]],
       ["หลังลงเรือ: Shimabara Port → ตรงไป Huis Ten Bosch", ["shimabara", "htb"]]
     ],
     notes: [
-      ["การตัดตรงจากท่าเรือ Shimabara ไป Huis Ten Bosch เลย ทำให้ไปถึงตั้งแต่ 11:30 น. ได้เที่ยวคุ้มค่าตั๋วทั้งบรรยากาศสวนดอกไม้ตอนกลางวันและไฟประดับ Kingdom of Lights ตอนกลางคืนแบบไม่เหนื่อย", 1],
-      ["ต้องจองเรือเฟอร์รี่ Ocean Arrow รอบ 09:25 ล่วงหน้าพร้อมระบุขนาดรถเช่า และถึงท่าเรือก่อนเรือออกอย่างน้อย 20–30 นาที"]
+      ["การตัดตรงจากท่าเรือ Shimabara ไป Huis Ten Bosch เลย ทำให้ไปถึงตั้งแต่ 11:30 น. จอดรถทิ้งไว้ยาวแล้วเดินเที่ยวคุ้มค่าตั๋วทั้งกลางวันและกลางคืน", 1]
     ]
   },
   {
     d: "3/12", wd: "วันพฤหัสบดี", title: "ทัวร์จุดชมวิวหมู่เกาะคุจูคุชิมะ (Sasebo) & Sasebo Burger → ขับเข้าเมือง Fukuoka เช็คอิน & ทานมื้อเย็น",
-    hotel: "Hotel Monterey La Soeur Fukuoka (คืนที่ 1)", drive: "~2.5 ชม. · 145 กม.",
-    tollSum: "ETC ~¥4,400 (≈ 1,012 ฿) | เงินสด ¥5,250",
+    hotel: "Hotel Monterey La Soeur Fukuoka (คืนที่ 1)", drive: "~2.5 ชม. · 145 กม. (ใช้น้ำมัน ~9 L)",
+    tollSum: "ETC ~¥4,400 (≈ 1,012 ฿) | น้ำมันเหลือ ~69% (36 L)",
     tollDetails: [
       "ช่วงเช้า (Huis Ten Bosch → Sasebo): วิ่ง Nishi-Kyushu Expwy ช่วง Sasebo-Daito IC → Sasebo-Chuo IC (~20 นาที · ¥0–¥260)",
-      "ช่วงบ่ายแก่ (Sasebo → Fukuoka Tenjin): ขึ้นด่าน Sasebo-Chuo IC → Takeo JCT → Kyushu Expwy → Dazaifu IC (ETC ¥3,770 / เงินสด ¥4,360) เชื่อม Fukuoka Urban Expwy ลงด่าน Tenjin-kita Ramp (¥630)"
+      "ช่วงบ่ายแก่ (Sasebo → Fukuoka Tenjin): ขึ้นด่าน Sasebo-Chuo IC → Takeo JCT → Kyushu Expwy → Dazaifu IC (ETC ¥3,770 / เงินสด ¥4,360) เชื่อม Fukuoka Urban Expwy ลงด่าน Tenjin-kita Ramp (¥630)",
+      "⛽ ปริมาณน้ำมันวันนี้: ขับรวม ~145 กม. ใช้น้ำมัน ~9.0 L · สิ้นวันเหลือ ~36.0 L (69%) ยังไม่ต้องเติม"
     ],
     roadSegments: [["htb", "kujukushima_park", "tenkaiho", "funakoshi", "ishidake", "sasebo_burger", "yumihari", "monterey"]],
     embedRoute: ["htb", "kujukushima_park", "tenkaiho", "funakoshi", "ishidake", "yumihari", "monterey"],
     stops: [
-      { p: "htb", t: "09:15", name: "เช็คเอาท์ออกจาก Huis Ten Bosch มุ่งหน้าสู่เมือง Sasebo", sub: "ขับรถขึ้นเหนือเพียง ~25–30 นาที เข้าสู่โซนจุดชมวิวหมู่เกาะ 99 เกาะ (Kujukushima)", num: false },
-      { p: "kujukushima_park", t: "09:45", name: "🏞️ Kujukushima Tourist Park (九十九島観光公園)", sub: "สวนสาธารณะแห่งใหม่ล่าสุดบนเนินเขากว้างขวาง ชมวิวพาโนรามาของหมู่เกาะคุจูคุชิมะแบบ 360 องศาจากลานหญ้า Shibafu", leg: "จาก Huis Ten Bosch ~30 น.", toll: "ฟรี / ¥260" },
-      { p: "tenkaiho", t: "10:30", name: "🔭 จุดชมวิว Tenkaiho Observatory (展海峰)", sub: "จุดชมวิวหมู่เกาะคุจูคุชิมะมุมเฉียง 180 องศาที่สวยและมีชื่อเสียงที่สุดของเมือง Sasebo (อยู่ใกล้กับ Tourist Park แค่ 5 นาที)", leg: "ขับรถ ~5 น.", toll: "ฟรี" },
-      { p: "funakoshi", t: "11:15", name: "🌊 จุดชมวิว Funakoshi Observatory (船越展望所)", sub: "จุดชมวิวที่อยู่ใกล้ระดับน้ำทะเลที่สุด มองเห็นเกาะเล็กเกาะน้อยเรียงรายอยู่ตรงหน้าในระยะใกล้", leg: "ขับเลียบเขาขึ้นเหนือ ~10 น.", toll: "ฟรี" },
-      { p: "ishidake", t: "11:45", name: "🎬 จุดชมวิว Ishidake Observatory (石岳展望台園地)", sub: "จุดชมวิวบนยอดเขาหินที่เป็นโลเคชันถ่ายทำภาพยนตร์ฮอลลีวูดเรื่อง The Last Samurai มองเห็นเกาะเรียงตัวสวยงาม", leg: "ขับรถ ~5 น.", toll: "ฟรี" },
-      { p: "sasebo_burger", t: "12:45", name: "🍔 มื้อกลางวัน: ร้าน Sasebo Burger Museum (佐世保バーガーミュージアム)", sub: "ทานเบอร์เกอร์โฮมเมดชิ้นโตของดีประจำเมืองซาเซโบะ พร้อมชมวิวอ่าวและสะพาน Saikai จากระเบียงร้านบนเขา Yumihari", leg: "ขับขึ้นเขา Yumihari ~20 น.", toll: "ฟรี" },
-      { p: "yumihari", t: "13:45", name: "⛰️ จุดชมวิว Yumihari Park Observation Deck (弓張岳展望所)", sub: "ตั้งอยู่ติดกับร้าน Sasebo Burger Museum! ชมวิวทั้งฝั่งหมู่เกาะ Kujukushima และฝั่งท่าเรือฐานทัพเรือ Sasebo ได้พร้อมกัน", leg: "เดิน/ขับรถ ~2 น." },
-      { p: "monterey", t: "16:30", name: "🏨 เช็คอิน Hotel Monterey La Soeur Fukuoka (Tenjin) & ทานมื้อเย็น", sub: "ออกจาก Sasebo ~14:30 น. · เข้าที่พักย่าน Tenjin พักผ่อนและเดินไปทานมื้อเย็นของอร่อยฟุกุโอกะ (เช่น แฮมเบิร์ก Kiwamiya, หม้อไฟ Motsunabe หรือซูชิย่าน Tenjin)", leg: "Sasebo-Chuo IC → Fukuoka Tenjin ~1 ชม. 45 น.", toll: "ETC ¥4,400 (เงินสด ¥4,990)" }
+      { p: "htb", t: "09:15", name: "เช็คเอาท์ออกจาก Huis Ten Bosch มุ่งหน้าสู่เมือง Sasebo", sub: "ขับรถขึ้นเหนือเพียง ~25–30 นาที เข้าสู่โซนจุดชมวิวหมู่เกาะ 99 เกาะ (Kujukushima)", park: "⛽ น้ำมันคงเหลือตอนเช้า ~86% (45 L)", parkType: "free", num: false },
+      { p: "kujukushima_park", t: "09:45", name: "🏞️ Kujukushima Tourist Park (九十九島観光公園)", sub: "สวนสาธารณะแห่งใหม่ล่าสุดบนเนินเขากว้างขวาง ชมวิวพาโนรามาของหมู่เกาะคุจูคุชิมะแบบ 360 องศาจากลานหญ้า Shibafu", leg: "จาก Huis Ten Bosch ~30 น.", toll: "ฟรี / ¥260", park: "🅿️ ที่จอดรถฟรี! ลานจอดกว้างขวางมาก (รองรับได้ 220 คัน) จอดแล้วเดินชมวิวได้เลย", parkType: "free" },
+      { p: "tenkaiho", t: "10:30", name: "🔭 จุดชมวิว Tenkaiho Observatory (展海峰)", sub: "จุดชมวิวหมู่เกาะคุจูคุชิมะมุมเฉียง 180 องศาที่สวยและมีชื่อเสียงที่สุดของเมือง Sasebo (อยู่ใกล้กับ Tourist Park แค่ 5 นาที)", leg: "ขับรถ ~5 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดหน้าจุดชมวิว Tenkaiho (~100 คัน)", parkType: "free" },
+      { p: "funakoshi", t: "11:15", name: "🌊 จุดชมวิว Funakoshi Observatory (船越展望所)", sub: "จุดชมวิวที่อยู่ใกล้ระดับน้ำทะเลที่สุด มองเห็นเกาะเล็กเกาะน้อยเรียงรายอยู่ตรงหน้าในระยะใกล้", leg: "ขับเลียบเขาขึ้นเหนือ ~10 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดริมถนนจุดชมวิว (~13 คัน แวะถ่ายรูป 10–15 นาทีได้เลย)", parkType: "free" },
+      { p: "ishidake", t: "11:45", name: "🎬 จุดชมวิว Ishidake Observatory (石岳展望台園地)", sub: "จุดชมวิวบนยอดเขาหินที่เป็นโลเคชันถ่ายทำภาพยนตร์ฮอลลีวูดเรื่อง The Last Samurai มองเห็นเกาะเรียงตัวสวยงาม", leg: "ขับรถ ~5 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! ลานจอดรถทางเข้าสวน (~40 คัน) แล้ว 1.1 เดินขึ้นเนินชมวิวประมาณ 5 นาที", parkType: "free" },
+      { p: "sasebo_burger", t: "12:45", name: "🍔 มื้อกลางวัน: ร้าน Sasebo Burger Museum (佐世保バーガーミュージアム)", sub: "ทานเบอร์เกอร์โฮมเมดชิ้นโตของดีประจำเมืองซาเซโบะ พร้อมชมวิวอ่าวและสะพาน Saikai จากระเบียงร้านบนเขา Yumihari", leg: "ขับขึ้นเขา Yumihari ~20 น.", toll: "ฟรี", park: "🅿️ ที่จอดรถฟรี! จอดที่ลานจอดหน้าร้าน/จุดชมวิว Yumihari (~40 คัน) จุดเดียวเที่ยวได้ทั้ง 2 ที่!", parkType: "free" },
+      { p: "yumihari", t: "13:45", name: "⛰️ จุดชมวิว Yumihari Park Observation Deck (弓張岳展望所)", sub: "ตั้งอยู่ติดกับร้าน Sasebo Burger Museum! ชมวิวทั้งฝั่งหมู่เกาะ Kujukushima และฝั่งท่าเรือฐานทัพเรือ Sasebo ได้พร้อมกัน", leg: "เดินเท้า 1 นาที", park: "🚶 1.1 เดินเท้าจากร้าน Sasebo Burger Museum เพียง 1–2 นาที (ใช้ที่จอดรถเดียวกัน ไม่ต้องย้ายรถ)", parkType: "walk" },
+      { p: "monterey", t: "16:30", name: "🏨 เช็คอิน Hotel Monterey La Soeur Fukuoka (Tenjin) & ทานมื้อเย็น", sub: "ออกจาก Sasebo ~14:30 น. · เข้าที่พักย่าน Tenjin พักผ่อนและไปทานมื้อเย็นในเมืองฟุกุโอกะ", leg: "Sasebo-Chuo IC → Fukuoka Tenjin ~1 ชม. 45 น.", toll: "ETC ¥4,400 (เงินสด ¥4,990)", park: "🅿️ เก็บรถเข้าที่จอดโรงแรม/ลานพันธมิตรสำหรับรถตู้หลังคาสูง (~¥1,800–¥2,000/คืน) · 🍽️ มื้อเย็นในเมืองฟุกุโอกะไม่มีที่จอดฟรี แนะนำจอดรถเก็บไว้ที่โรงแรม แล้ว 1.1 เดินเที่ยวรอบ Tenjin / Daimyo หรือ 1.2 นั่งรถไฟใต้ดิน Subway ไป Hakata (5 นาที ¥210)", parkType: "paid" }
     ],
     links: [
       ["เส้นทางทัวร์จุดชมวิว Sasebo (HTB → Kujukushima Park → Tenkaiho → Funakoshi → Ishidake → Sasebo Burger & Yumihari)", ["htb", "kujukushima_park", "tenkaiho", "funakoshi", "ishidake", "sasebo_burger", "yumihari"]],
       ["เส้นทางขากลับ Sasebo → Hotel Monterey Fukuoka", ["yumihari", "monterey"]]
     ],
     notes: [
-      ["จัดลำดับจุดชมวิวใน Sasebo ไล่จากทิศใต้ขึ้นทิศเหนือ (Kujukushima Tourist Park → Tenkaiho → Funakoshi → Ishidake → Sasebo Burger Museum & Yumihari Park) แต่ละจุดห่างกันเพียง 5–15 นาที ขับไล่ตามลำดับได้ลื่นไหลโดยไม่ย้อนทางเลย!", 1],
-      ["ร้าน Sasebo Burger Museum ตั้งอยู่บนยอดเขาเดียวกับจุดชมวิว Yumihari Park Observation Deck พอดี จึงรวบเป็นจุดแวะทานมื้อเที่ยงและชมวิวก่อนขึ้นทางด่วน Sasebo-Chuo IC กลับเข้าฟุกุโอกะได้สะดวกมาก"]
+      ["จุดชมวิวใน Sasebo ทั้ง 5 แห่ง และร้าน Sasebo Burger Museum มีที่จอดรถฟรีครบทุกจุด! และที่ Yumihari Park สามารถจอดรถที่เดียวเดินเชื่อมกับร้านเบอร์เกอร์ได้เลย", 1],
+      ["เมื่อถึงย่าน Tenjin (ฟุกุโอกะ) ช่วงเย็น แนะนำให้เอารถเข้าจอดเก็บที่โรงแรมทันที แล้วใช้ 1.1 เดินเท้า หรือ 1.2 รถไฟใต้ดิน ไปทานข้าวเย็น เพราะค่าที่จอดรถในย่าน Tenjin แพงและหายากสำหรับรถตู้"]
     ]
   },
   {
-    d: "4/12", wd: "วันศุกร์", title: "ทัวร์รอบฟุกุโอกะ (ตลาดปลา Nagahama, วัดพระนอน Nanzoin, Miyajidake, Marine World) & คืนรถ",
-    hotel: "Hotel Monterey La Soeur Fukuoka (คืนที่ 2)", drive: "~2.5 ชม. · 110 กม.",
-    tollSum: "ETC / เงินสด ~¥1,260 (≈ 290 ฿)",
+    d: "4/12", wd: "วันศุกร์", title: "ทัวร์รอบฟุกุโอกะ (ตลาดปลา Nagahama, วัดพระนอน Nanzoin, Miyajidake, Marine World) → เติมน้ำมันครั้งที่ 2 & คืนรถ",
+    hotel: "Hotel Monterey La Soeur Fukuoka (คืนที่ 2)", drive: "~2.5 ชม. · 110 กม. (ใช้น้ำมัน ~6.5 L)",
+    tollSum: "ทางด่วน ~¥1,260 | ⛽ 15:45 น. เติมน้ำมันเต็มถังก่อนคืนรถ (~22.5 L)",
     tollDetails: [
-      "ใช้ทางด่วนในเมือง Fukuoka Urban Expressway 2 ช่วง (ช่วงสายและช่วงบ่ายกลับเข้าสถานี Hakata) อัตราเหมาจ่ายครั้งละ ¥630 × 2 = ¥1,260"
+      "ใช้ทางด่วนในเมือง Fukuoka Urban Expressway 2 ช่วง (ช่วงสายและช่วงบ่ายกลับเข้าสถานี Hakata) อัตราเหมาจ่ายครั้งละ ¥630 × 2 = ¥1,260",
+      "⛽ แผนเติมน้ำมันครั้งที่ 2 (ก่อนคืนรถ 16:00 น.): ขับตั้งแต่วันที่ 2–4/12 รวม ~370 กม. ใช้น้ำมันไปราว ~22.5 ลิตร แวะปั๊มน้ำมัน ENEOS / Idemitsu / Apollo Station รอบสถานี Hakata เติม Regular (หัวสีแดง) เต็มถัง (~¥3,950 / ≈ 910 ฿) แล้วเก็บใบเสร็จยื่นให้เจ้าหน้าที่ตอนคืนรถ"
     ],
     roadSegments: [["nagahama", "nanzoin", "miyajidake", "marine", "hakata", "canal"]],
     embedRoute: ["nagahama", "nanzoin", "miyajidake", "marine", "hakata"],
     stops: [
-      { p: "nagahama", t: "08:00", name: "🐟 ตลาดปลา Nagahama Fish Market (長浜鮮魚市場)", sub: "ทานอาหารเช้าข้าวหน้าปลาดิบ (Kaisendon) และซูชิสดๆ ในอาคาร Ichiba Kaikan", leg: "จากโรงแรม ~10 น.", toll: "ฟรี" },
-      { p: "nanzoin", t: "09:30", name: "🙏 วัดนันโซอิน (Nanzoin Temple)", sub: "สักการะองค์พระพุทธไสยาสน์สำริดขนาดใหญ่ท่ามกลางหุบเขาเมือง Sasaguri (แต่งกายสุภาพ)", leg: "ขับรถ ~30 น.", toll: "ฟรี (หรือ Urban Expwy ¥630)" },
-      { p: "miyajidake", t: "11:00", name: "⛩️ ศาลเจ้ามิยาจิดาเกะ (Miyajidake Shrine)", sub: "ชมเชือกศักดิ์สิทธิ์ชิเมนาวะขนาดยักษ์ และจุดชมวิวถนนแห่งแสง (Path of Light) ที่ทอดยาวสู่ทะเล", leg: "ขับรถ ~40 น.", toll: "ทางธรรมดา (ฟรี)" },
-      { p: "marine", t: "13:00", name: "🐬 พิพิธภัณฑ์สัตว์น้ำ Marine World Uminonakamichi", sub: "ชมโชว์โลมาและสิงโตทะเลพร้อมฉากหลังอ่าวฮากาตะ และตู้ปลาฉลามขนาดใหญ่", leg: "ขับเลียบแหลม ~40 น.", toll: "ฟรี" },
-      { p: "hakata", t: "16:00", name: "⛽ เติมน้ำมันเต็มถัง & คืนรถเช่าที่ Hakata Station", sub: "แวะปั๊มน้ำมันใกล้สถานี Hakata เติม Regular (สีแดง) เต็มถังพร้อมเก็บใบเสร็จไว้แสดงตอนคืนรถ", leg: "Fukuoka Urban Expwy ~30 น.", toll: "Urban Expwy ¥630" },
-      { p: "canal", t: "17:00", name: "🛍️ ช้อปปิ้งห้าง Canal City Hakata", sub: "เดินเล่นช้อปปิ้งของฝาก ชมโชว์น้ำพุเต้นระบำ และทานราเมนที่ Ramen Stadium ชั้น 5", leg: "เดินเท้า ~10 น." }
+      { p: "nagahama", t: "08:00", name: "🐟 ตลาดปลา Nagahama Fish Market (長浜鮮魚市場)", sub: "ทานอาหารเช้าข้าวหน้าปลาดิบ (Kaisendon) และซูชิสดๆ ในอาคาร Ichiba Kaikan", leg: "จากโรงแรม ~10 น.", toll: "ฟรี", park: "🅿️ มีลานจอดรถหน้าอาคารตลาด Ichiba Kaikan (60 นาทีแรก ~¥100–¥200)", parkType: "paid" },
+      { p: "nanzoin", t: "09:30", name: "🙏 วัดนันโซอิน (Nanzoin Temple)", sub: "สักการะองค์พระพุทธไสยาสน์สำริดขนาดใหญ่ท่ามกลางหุบเขาเมือง Sasaguri (แต่งกายสุภาพ)", leg: "ขับรถ ~30 น.", toll: "ฟรี (หรือ Urban Expwy ¥630)", park: "🅿️ ที่จอดรถฟรี! ลานจอดรถยนต์ส่วนบุคคลหน้าวัด Nanzoin (จอดฟรีเฉพาะรถยนต์นั่ง/MPV ส่วนรถบัสห้ามเข้า) แล้ว 1.1 เดินขึ้นเนินไปองค์พระนอน ~5–10 นาที", parkType: "free" },
+      { p: "miyajidake", t: "11:00", name: "⛩️ ศาลเจ้ามิยาจิดาเกะ (Miyajidake Shrine)", sub: "ชมเชือกศักดิ์สิทธิ์ชิเมนาวะขนาดยักษ์ และจุดชมวิวถนนแห่งแสง (Path of Light) ที่ทอดยาวสู่ทะเล", leg: "ขับรถ ~40 น.", toll: "ทางธรรมดา (ฟรี)", park: "🅿️ ที่จอดรถฟรี! ลานจอดรถขนาดใหญ่ของศาลเจ้า (รองรับได้ 700 คัน)", parkType: "free" },
+      { p: "marine", t: "13:00", name: "🐬 พิพิธภัณฑ์สัตว์น้ำ Marine World Uminonakamichi", sub: "ชมโชว์โลมาและสิงโตทะเลพร้อมฉากหลังอ่าวฮากาตะ และตู้ปลาฉลามขนาดใหญ่", leg: "ขับเลียบแหลม ~40 น.", toll: "ฟรี", park: "🅿️ ลานจอดรถขนาดใหญ่หน้า Marine World (ค่าจอดเหมาจ่าย ¥600/วัน)", parkType: "paid" },
+      { p: "hakata", t: "16:00", name: "⛽ เติมน้ำมันเต็มถังครั้งที่ 2 & คืนรถเช่าที่ Hakata Station", sub: "แวะปั๊มน้ำมันใกล้สถานี Hakata เติม Regular (สีแดง) เต็มถัง (~22.5 ลิตร ≈ ¥3,950) พร้อมเก็บใบเสร็จไว้แสดงตอนคืนรถ", leg: "Fukuoka Urban Expwy ~30 น.", toll: "Urban Expwy ¥630", park: "⛽ เติมน้ำมันเต็มถัง 100% + คืนรถที่สาขา Hakata Station (คืนนี้ไม่ต้องเสียค่าที่จอดรถโรงแรมแล้ว!)", parkType: "free" },
+      { p: "canal", t: "17:00", name: "🛍️ ช้อปปิ้งห้าง Canal City Hakata", sub: "เดินเล่นช้อปปิ้งของฝาก ชมโชว์น้ำพุเต้นระบำ และทานราเมนที่ Ramen Stadium ชั้น 5", leg: "เดินเท้า ~10 น.", park: "🚶 1.1 เดินเท้าจากสถานี Hakata (~10 นาที) หรือ 1.2 นั่งรถไฟใต้ดิน Nanakuma Line จากสถานี Hakata ไปสถานี Kushida Shrine (2 นาที) ขากลับโรงแรมที่ Tenjin นั่ง Subway หรือเดินชมไฟคริสต์มาสได้เลย", parkType: "walk" }
     ],
     links: [["เส้นทางขับรถทั้งวัน (Nagahama → Nanzoin → Miyajidake → Marine World → คืนรถ Hakata)", ["nagahama", "nanzoin", "miyajidake", "marine", "hakata"]]],
     notes: [
-      ["ตลาดปลา Nagahama โซนประมูลค้าส่งเปิดให้คนทั่วไปเข้าเฉพาะวันเสาร์ที่ 2 ของเดือน แต่โซนร้านอาหารในตึก Ichiba Kaikan เปิดทุกวันตั้งแต่เช้าตรู่"]
+      ["หลังคืนรถที่สถานี Hakata ตอน 16:00 น. แล้ว การไป Canal City และกลับโรงแรม Hotel Monterey (Tenjin) แนะนำใช้ 1.1 เดินเท้า (ผ่าน Skywalk หน้าสถานี Hakata ~10 นาที) หรือ 1.2 รถไฟใต้ดินสายสีเขียว (Nanakuma Line) สะดวกและประหยัดค่าจอดรถในเมืองไปได้อีก 1 คืน!", 1]
     ]
   },
   {
     d: "5/12", wd: "วันเสาร์", title: "เดินทางไปสนามบินฟุกุโอกะ & บินกลับบ้านโดยสวัสดิภาพ",
     hotel: "—", drive: "แท็กซี่ / รถไฟใต้ดิน",
-    tollSum: "ไม่มีค่าทางด่วน (เดินทางด้วยแท็กซี่)",
+    tollSum: "ไม่มีค่าทางด่วน (คืนรถแล้ว)",
     tollDetails: ["แท็กซี่จากโรงแรมย่าน Tenjin ไปสนามบินฟุกุโอกะ อาคารระหว่างประเทศ ประมาณ ¥2,500–¥3,000 ต่อคัน (~20–25 นาที)"],
     roadSegments: [["monterey", "fuk"]],
     embedRoute: ["monterey", "fuk"],
     stops: [
-      { p: "monterey", t: "07:00", name: "🚕 รอบที่ 1: ส้มโอออกจากโรงแรมด้วยแท็กซี่ไปสนามบิน", sub: "ใช้เวลา ~25 นาที ถึงอาคารระหว่างประเทศราว 07:30 น. (ล่วงหน้า 2.5 ชม. ก่อนไฟลท์ 10:00 น.)", num: false },
-      { p: "monterey", t: "08:30", name: "🚕 รอบที่ 2: น้ำ+เฟิส ออกจากโรงแรม Hotel Monterey La Soeur", sub: "แนะนำนั่งแท็กซี่ตรงไปอาคารระหว่างประเทศ (~25 นาที) สะดวกกว่านั่ง Subway ที่ต้องไปต่อรถบัส Shuttle อีกทอด", num: false },
-      { p: "fuk", t: "09:15", name: "🧳 น้ำ+เฟิส ถึงสนามบินฟุกุโอกะ เช็คอินโหลดกระเป๋า", sub: "เผื่อเวลาอย่างน้อย 2 ชม. ก่อนเวลาบิน", num: false },
+      { p: "monterey", t: "07:00", name: "🚕 รอบที่ 1: ส้มโอออกจากโรงแรมด้วยแท็กซี่ไปสนามบิน", sub: "ใช้เวลา ~25 นาที ถึงอาคารระหว่างประเทศราว 07:30 น. (ล่วงหน้า 2.5 ชม. ก่อนไฟลท์ 10:00 น.)", park: "1.2 แท็กซี่จากหน้าโรงแรมตรงไปอาคารระหว่างประเทศ (~¥2,500)", parkType: "walk", num: false },
+      { p: "monterey", t: "08:30", name: "🚕 รอบที่ 2: น้ำ+เฟิส ออกจากโรงแรม Hotel Monterey La Soeur", sub: "แนะนำนั่งแท็กซี่ตรงไปอาคารระหว่างประเทศ (~25 นาที) สะดวกกว่านั่ง Subway ที่ต้องไปต่อรถบัส Shuttle อีกทอด", park: "1.2 แท็กซี่ตรงไปอาคารระหว่างประเทศ หรือ Subway Tenjin → Fukuoka Airport (¥260) + Shuttle Bus ฟรี", parkType: "walk", num: false },
+      { p: "fuk", t: "09:15", name: "🧳 น้ำ+เฟิส ถึงสนามบินฟุกุโอกะ เช็คอินโหลดกระเป๋า", sub: "เผื่อเวลาอย่างน้อย 2 ชม. ก่อนเวลาบิน", park: "1.1 เดินเข้าเคาน์เตอร์เช็คอินชั้น 3F อาคารระหว่างประเทศ", parkType: "walk", num: false },
       { p: "fuk", t: "10:00", name: "✈️ ส้มโอ บินกลับ", sub: "เดินทางปลอดภัย!", num: false },
       { p: "fuk", t: "11:40", name: "✈️ น้ำ+เฟิส บินกลับบ้าน", sub: "จบทริป Kyushu Road Trip 2569 อย่างสมบูรณ์", num: false }
     ],
@@ -1543,6 +1696,7 @@ async function renderDays() {
             <span class="stop-title">${s.name}</span>
           </div>
           ${s.sub ? `<div class="stop-sub">${s.sub}</div>` : ""}
+          ${s.park ? `<div class="park-badge ${s.parkType || ""}">${s.park}</div>` : ""}
           <div class="stop-actions">
             <a class="pin-btn" href="${mapUrl}" target="_blank" rel="noopener">📍 เปิดแอป Google Maps ↗</a>
             ${hasMap ? `<button type="button" class="pin-btn embed-trigger" data-day="${dayId}" data-key="${s.p}" data-name="${s.name.replace(/"/g, '&quot;')}">🔍 ส่อง Google Maps</button>` : ""}
