@@ -16,18 +16,18 @@
   --ink: #1a212d;
   --muted: #5a6473;
   --line: #dde1dc;
-  --accent: #1e4b7a;
-  --accent-soft: #e6eef7;
-  --route: #c0462b;
-  --route-soft: #fbece8;
-  --ferry: #1f7a87;
-  --ferry-soft: #e3f3f5;
+  --accent: #1a73e8;
+  --accent-soft: #e8f0fe;
+  --route: #d93025;
+  --route-soft: #fce8e6;
+  --ferry: #007b83;
+  --ferry-soft: #e4f7fb;
   --toll: #7145b5;
   --toll-soft: #f1ebf9;
-  --warn: #9e5b00;
-  --warn-bg: #fdf3df;
-  --ok: #266b38;
-  --ok-bg: #e3f3e6;
+  --warn: #b06000;
+  --warn-bg: #fef7e0;
+  --ok: #188038;
+  --ok-bg: #e6f4ea;
   --shadow: 0 4px 18px rgba(20, 30, 45, 0.06);
   --f-display: "Bai Jamjuree", "IBM Plex Sans Thai", system-ui, sans-serif;
   --f-body: "IBM Plex Sans Thai", system-ui, -apple-system, sans-serif;
@@ -41,18 +41,18 @@
     --ink: #e8ecf2;
     --muted: #9ba5b4;
     --line: #2c3543;
-    --accent: #82b1e8;
-    --accent-soft: #1d2b3d;
-    --route: #f08368;
-    --route-soft: #36221e;
-    --ferry: #62c5d3;
-    --ferry-soft: #192e33;
+    --accent: #8ab4f8;
+    --accent-soft: #1e2c42;
+    --route: #f28b82;
+    --route-soft: #382222;
+    --ferry: #78d9ec;
+    --ferry-soft: #192f35;
     --toll: #b996f5;
     --toll-soft: #2a213b;
-    --warn: #f4bb62;
-    --warn-bg: #332717;
-    --ok: #7fd492;
-    --ok-bg: #192e1f;
+    --warn: #fdd663;
+    --warn-bg: #332916;
+    --ok: #81c995;
+    --ok-bg: #182e20;
     --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
     color-scheme: dark;
   }
@@ -64,18 +64,18 @@
   --ink: #e8ecf2;
   --muted: #9ba5b4;
   --line: #2c3543;
-  --accent: #82b1e8;
-  --accent-soft: #1d2b3d;
-  --route: #f08368;
-  --route-soft: #36221e;
-  --ferry: #62c5d3;
-  --ferry-soft: #192e33;
+  --accent: #8ab4f8;
+  --accent-soft: #1e2c42;
+  --route: #f28b82;
+  --route-soft: #382222;
+  --ferry: #78d9ec;
+  --ferry-soft: #192f35;
   --toll: #b996f5;
   --toll-soft: #2a213b;
-  --warn: #f4bb62;
-  --warn-bg: #332717;
-  --ok: #7fd492;
-  --ok-bg: #192e1f;
+  --warn: #fdd663;
+  --warn-bg: #332916;
+  --ok: #81c995;
+  --ok-bg: #182e20;
   --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
   color-scheme: dark;
 }
@@ -96,7 +96,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
   padding: 8px max(16px, env(safe-area-inset-left, 0px));
@@ -231,7 +231,55 @@ a { color: var(--accent); }
 }
 @media (max-width: 920px) { .overview { grid-template-columns: 1fr; } }
 
-/* Leaflet Map Containers */
+/* Map Containers & Mode Tabs */
+.map-col-sticky {
+  position: sticky;
+  top: 64px;
+}
+@media (max-width: 920px) { .map-col-sticky { position: static; } }
+
+.map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.map-tabs {
+  display: inline-flex;
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 2px;
+  gap: 2px;
+}
+.map-tab {
+  font-family: var(--f-body);
+  font-size: .76rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.map-tab.active {
+  background: var(--accent);
+  color: #fff;
+}
+.route-stat-badge {
+  font-family: var(--f-mono);
+  font-size: .75rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--ok-bg);
+  color: var(--ok);
+  font-weight: 600;
+}
+
 .leaflet-box {
   width: 100%;
   height: 460px;
@@ -240,15 +288,27 @@ a { color: var(--accent); }
   overflow: hidden;
   z-index: 1;
 }
-.day-leaflet {
+.day-map-wrap {
+  position: relative;
   width: 100%;
-  height: 390px;
+  height: 410px;
   border-radius: 12px;
   border: 1px solid var(--line);
   overflow: hidden;
-  position: sticky;
-  top: 64px;
+  background: var(--paper-alt);
+}
+@media (max-width: 920px) { .day-map-wrap { height: 340px; } }
+
+.day-leaflet {
+  width: 100%;
+  height: 100%;
   z-index: 1;
+}
+.gmap-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: none;
 }
 .legend {
   display: flex;
@@ -259,7 +319,7 @@ a { color: var(--accent); }
   margin-top: 10px;
 }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
-.sw { width: 22px; height: 0; border-top: 3.5px solid var(--route); display: inline-block; }
+.sw { width: 22px; height: 0; border-top: 3.5px solid #1a73e8; display: inline-block; }
 .sw.f { border-top: 3.5px dashed var(--ferry); }
 
 /* Custom Leaflet Numbered Markers */
@@ -269,16 +329,16 @@ a { color: var(--accent); }
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--route);
+  background: #ea4335;
   color: #fff;
   font-family: var(--f-mono);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
-.mk-pin.stay { background: var(--accent); width: 28px; height: 28px; }
-.mk-pin.ferry { background: var(--ferry); }
+.mk-pin.stay { background: #1a73e8; width: 28px; height: 28px; }
+.mk-pin.ferry { background: #007b83; }
 
 /* Tables */
 .tbl { overflow-x: auto; }
@@ -359,12 +419,12 @@ tfoot td { font-weight: 600; border-bottom: none; background: var(--paper-alt); 
 
 .daybody {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.05fr);
   gap: 22px;
   padding: 20px 22px;
   align-items: start;
 }
-@media (max-width: 920px) { .daybody { grid-template-columns: 1fr; } .day-leaflet { position: static; height: 320px; } }
+@media (max-width: 920px) { .daybody { grid-template-columns: 1fr; } }
 .daybody.nomap { grid-template-columns: 1fr; }
 
 /* Rich Stop Timeline */
@@ -383,11 +443,11 @@ tfoot td { font-weight: 600; border-bottom: none; background: var(--paper-alt); 
   margin-left: 36px;
   padding: 6px 12px;
   border-radius: 8px;
-  background: var(--route-soft);
-  color: var(--route);
+  background: var(--accent-soft);
+  color: var(--accent);
   font-size: .8rem;
   font-family: var(--f-mono);
-  border-left: 3px solid var(--route);
+  border-left: 3px solid var(--accent);
 }
 .leg-row.ferry {
   background: var(--ferry-soft);
@@ -442,14 +502,14 @@ tfoot td { font-weight: 600; border-bottom: none; background: var(--paper-alt); 
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--route);
+  background: #ea4335;
   color: #fff;
   font-family: var(--f-mono);
   font-size: .72rem;
-  font-weight: 600;
+  font-weight: 700;
   display: grid;
   place-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.35);
 }
 .stop-num.none {
   background: rgba(25, 31, 40, 0.75);
@@ -495,9 +555,9 @@ tfoot td { font-weight: 600; border-bottom: none; background: var(--paper-alt); 
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: .76rem;
+  font-size: .75rem;
   font-weight: 600;
-  padding: 3px 9px;
+  padding: 4px 9px;
   border-radius: 6px;
   background: var(--accent-soft);
   color: var(--accent);
@@ -507,6 +567,14 @@ tfoot td { font-weight: 600; border-bottom: none; background: var(--paper-alt); 
 }
 .pin-btn:hover {
   background: var(--accent);
+  color: #fff;
+}
+.pin-btn.embed-trigger {
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+.pin-btn.embed-trigger:hover {
+  background: var(--ok);
   color: #fff;
 }
 .pin-btn.focus-map {
@@ -575,7 +643,7 @@ tfoot td { font-weight: 600; border-bottom: none; background: var(--paper-alt); 
 
 .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 ul.check { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; font-size: .88rem; }
-.mapcap { font-size: .76rem; color: var(--muted); margin-top: 8px; display: flex; justify-content: space-between; align-items: center; }
+.mapcap { font-size: .75rem; color: var(--muted); margin-top: 8px; display: flex; justify-content: space-between; align-items: center; }
 footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top: 12px; }
 </style>
 </head>
@@ -583,17 +651,17 @@ footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top:
 
 <nav class="sticky-nav" aria-label="แถบนำทางรายวัน">
   <div class="nav-inner">
-    <a href="#top" class="nav-pill active" data-filter="all">ภาพรวมทั้งทริป</a>
+    <a href="#top" class="nav-pill active">ภาพรวมทั้งทริป</a>
     <a href="#tolls-sec" class="nav-pill">🛣️ สรุปค่าทางด่วน & เรือ</a>
-    <a href="#d1" class="nav-pill" data-day="1">27/11 (วันแรก)</a>
-    <a href="#d2" class="nav-pill" data-day="2">28/11 (Karato/Beppu)</a>
-    <a href="#d3" class="nav-pill" data-day="3">29/11 (Hell/Yufuin)</a>
-    <a href="#d4" class="nav-pill" data-day="4">30/11 (Aso/One Piece)</a>
-    <a href="#d5" class="nav-pill" data-day="5">1/12 (Kumamoto)</a>
-    <a href="#d6" class="nav-pill" data-day="6">2/12 (Ferry/Nagasaki)</a>
-    <a href="#d7" class="nav-pill" data-day="7">3/12 (HTB/Fukuoka)</a>
-    <a href="#d8" class="nav-pill" data-day="8">4/12 (Fukuoka รอบนอก)</a>
-    <a href="#d9" class="nav-pill" data-day="9">5/12 (บินกลับ)</a>
+    <a href="#d1" class="nav-pill">27/11 (วันแรก)</a>
+    <a href="#d2" class="nav-pill">28/11 (Karato/Beppu)</a>
+    <a href="#d3" class="nav-pill">29/11 (Hell/Yufuin)</a>
+    <a href="#d4" class="nav-pill">30/11 (Aso/One Piece)</a>
+    <a href="#d5" class="nav-pill">1/12 (Kumamoto)</a>
+    <a href="#d6" class="nav-pill">2/12 (Ferry/Nagasaki)</a>
+    <a href="#d7" class="nav-pill">3/12 (HTB/Fukuoka)</a>
+    <a href="#d8" class="nav-pill">4/12 (Fukuoka รอบนอก)</a>
+    <a href="#d9" class="nav-pill">5/12 (บินกลับ)</a>
     <div class="nav-spacer">
       <button class="theme-btn" id="toggle-theme" type="button">🌓 สลับโหมดสี</button>
     </div>
@@ -606,11 +674,11 @@ footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top:
     <div>
       <div class="eyebrow">27 พ.ย. – 5 ธ.ค. 2569 (2026) · FUKUOKA & KYUSHU ROAD TRIP</div>
       <h1>Kyushu Road Trip 2569</h1>
-      <p>แผนขับรถเที่ยวคิวชู 9 วัน 8 คืน (เช่ารถขับ 7 วัน: รับรถที่ Hakata 28/11 · คืนรถ 4/12) ผ่าน Shimonoseki, Mojiko, Beppu, Yufuin, Aso, Kumamoto, Shimabara, Unzen, Nagasaki และ Huis Ten Bosch พร้อมพิกัด Google Maps รายจุด รูปภาพสถานที่ และรายละเอียดค่าทางด่วนรายวัน</p>
+      <p>แผนขับรถเที่ยวคิวชู 9 วัน 8 คืน (เช่ารถขับ 7 วัน: รับรถที่ Hakata 28/11 · คืนรถ 4/12) เชื่อมต่อ <b>Google Maps Tiles + เส้นทางขับรถตามถนนจริง (Real Road Routing API) + Google Maps Embed สลับดูรีวิว/ดาวเทียมได้ในคลิกเดียว</b> โดยไม่ต้องใช้ API Key</p>
     </div>
     <div class="chips">
+      <span class="chip">🗺️ Google Maps + ถนนจริง</span>
       <span class="chip">🏨 ที่พักจองครบ 8 คืน</span>
-      <span class="chip route">🚗 ขับรถรวม ~950 กม. (7 วัน)</span>
       <span class="chip ferry">⛴ เฟอร์รี่ Ocean Arrow 2/12</span>
       <span class="chip toll">💳 แนะนำเช่าบัตร ETC (จ่ายจริงถูกกว่า KEP)</span>
     </div>
@@ -642,13 +710,16 @@ footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top:
 
 <section class="panel overview">
   <div>
-    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
-      <h2>🗺️ แผนที่อินเทอร์แอคทีฟทั้งทริป</h2>
-      <span class="eyebrow">คลิกที่หมุดเพื่อดูรูปและเปิด Google Maps</span>
+    <div class="map-toolbar">
+      <h2>🗺️ แผนที่ Google Maps เส้นทางถนนจริงทั้งทริป</h2>
+      <div class="map-tabs" id="ov-layer-tabs">
+        <button type="button" class="map-tab active" data-layer="roadmap">Google ถนน</button>
+        <button type="button" class="map-tab" data-layer="hybrid">ดาวเทียม (Hybrid)</button>
+      </div>
     </div>
     <div id="map-all" class="leaflet-box" role="region" aria-label="แผนที่เส้นทางทั้งทริป"></div>
     <div class="legend">
-      <span><i class="sw"></i>เส้นทางขับรถ</span>
+      <span><i class="sw"></i>เส้นทางขับรถตามถนนจริง (OSRM Road API)</span>
       <span><i class="sw f"></i>เส้นทางเรือเฟอร์รี่ (Kumamoto → Shimabara)</span>
       <span>🔵 หมุดน้ำเงิน = โรงแรมที่พัก · 🔴 หมุดแดง = จุดแวะเที่ยว</span>
     </div>
@@ -948,15 +1019,15 @@ footer { font-size: .8rem; color: var(--muted); text-align: center; padding-top:
 </section>
 
 <footer>
-  ข้อมูลซิงค์ตรงกับตาราง Google Sheet ล่าสุด · แผนที่ขับเคลื่อนด้วย Leaflet & OpenStreetMap · รูปภาพจาก Wikimedia Commons
+  ข้อมูลซิงค์ตรงกับตาราง Google Sheet · แผนที่เชื่อม Google Maps Tiles, Google Maps Embed & OSRM Real Road Routing API · รูปภาพจาก Wikimedia Commons
 </footer>
 </div>
 
 <script>
-// ---------- Places Database: [lat, lon, Google Maps Query, Direct URL (optional), Image URL] ----------
+// ---------- Places Database: [lat, lon, Google Maps Query, Direct URL, Image URL] ----------
 const P = {
   tenjin: [33.5888, 130.3976, "KOKO HOTEL Fukuoka Tenjin", "https://maps.app.goo.gl/ai1Jq2LgHmsEqDyQA", "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Fukuoka_City_-_Watanabe-dori_Avenue_-_01.JPG/960px-Fukuoka_City_-_Watanabe-dori_Avenue_-_01.JPG"],
-  hakata: [33.5902, 130.4207, "Hakata Station", "https://www.google.com/maps/search/?api=1&query=Hakata+Station", "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/JR_Hakata_City_2011_Jan.jpg/330px-JR_Hakata_City_2011_Jan.jpg"],
+  hakata: [33.5902, 130.4207, "Hakata Station, Fukuoka", "https://www.google.com/maps/search/?api=1&query=Hakata+Station", "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/JR_Hakata_City_2011_Jan.jpg/330px-JR_Hakata_City_2011_Jan.jpg"],
   kiwamiya: [33.5908, 130.4220, "Kiwamiya Hakata Bus Terminal", "https://www.google.com/maps/search/?api=1&query=Kiwamiya+Hakata", "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/JR_Hakata_City_2011_Jan.jpg/330px-JR_Hakata_City_2011_Jan.jpg"],
   lalaport: [33.5647, 130.4398, "LaLaport Fukuoka", "https://www.google.com/maps/search/?api=1&query=LaLaport+Fukuoka", "https://thumb.wikimedia.org/wikipedia/ja/thumb/e/e7/LaLaport_Fukuoka_ForestPark_Entrance.jpg/330px-LaLaport_Fukuoka_ForestPark_Entrance.jpg"],
   fuk: [33.5859, 130.4507, "Fukuoka Airport International Terminal", "https://www.google.com/maps/search/?api=1&query=Fukuoka+Airport+International+Terminal", "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Fukuoka_Airport_Domestic_Terminal.jpg/330px-Fukuoka_Airport_Domestic_Terminal.jpg"],
@@ -990,7 +1061,7 @@ const P = {
   hamamachi: [32.7448, 129.8797, "浜町アーケード Hamamachi Arcade Nagasaki", "https://goo.gl/maps/EdVBhYX5XbhzKUWC7?coh=178571&entry=tt", "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Hamanmachi_Nagasaki_Eastside_200809.jpg/960px-Hamanmachi_Nagasaki_Eastside_200809.jpg"],
   hiragi: [32.7455, 129.8785, "柊 ラーメン Hiragi Tomato Ramen Nagasaki", "https://goo.gl/maps/ATCLaj24iWPAQTFw7?coh=178571&entry=tt", "https://upload.wikimedia.org/wikipedia/commons/5/5c/Sara_udon_in_Nagasaki.jpg"],
   htb: [33.0864, 129.7897, "Huis Ten Bosch ハウステンボス", "https://www.google.com/maps/search/?api=1&query=Huis+Ten+Bosch", "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Huis_Ten_Bosch_-_01.jpg/960px-Huis_Ten_Bosch_-_01.jpg"],
-  shirahamaya: [33.0950, 129.7950, "Shirahamaya Huis Ten Bosch Sasebo", "https://maps.app.goo.gl/3LSdHS9qyo49LzyAA", "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Toriten_Sengokuya_ac_%281%29.jpg/960px-Toriten_Sengokuya_ac_%281%29.jpg"],
+  shirahamaya: [33.0950, 129.7950, "白浜屋 Shirahamaya Sasebo", "https://maps.app.goo.gl/3LSdHS9qyo49LzyAA", "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Toriten_Sengokuya_ac_%281%29.jpg/960px-Toriten_Sengokuya_ac_%281%29.jpg"],
   monterey: [33.5917, 130.3961, "Hotel Monterey La Soeur Fukuoka", "https://www.google.com/maps/search/?api=1&query=Hotel+Monterey+La+Soeur+Fukuoka", "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Fukuoka_City_-_Watanabe-dori_Avenue_-_01.JPG/960px-Fukuoka_City_-_Watanabe-dori_Avenue_-_01.JPG"],
   nagahama: [33.5966, 130.3860, "長浜鮮魚市場 Nagahama Fish Market", "https://www.google.com/maps/search/?api=1&query=Nagahama+Fish+Market+Fukuoka", "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/%E4%B9%9D%E5%B7%9E%E6%9C%9D%E6%97%A5%E6%94%BE%E9%80%81%E3%83%AD%E3%82%B4%E5%A4%89%E6%9B%B4%E5%BE%8C%E3%81%AE%E7%A4%BE%E5%B1%8B.jpg/960px-%E4%B9%9D%E5%B7%9E%E6%9C%9D%E6%97%A5%E6%94%BE%E9%80%81%E3%83%AD%E3%82%B4%E5%A4%89%E6%9B%B4%E5%BE%8C%E3%81%AE%E7%A4%BE%E5%B1%8B.jpg"],
   nanzoin: [33.6195, 130.5714, "南蔵院 Nanzoin Temple", "https://maps.app.goo.gl/iAYEu3aoKUzyJMwC6", "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Gate_of_Nanzoin_Temple_in_Sasaguri%2C_Kasuya%2C_Fukuoka.JPG/960px-Gate_of_Nanzoin_Temple_in_Sasaguri%2C_Kasuya%2C_Fukuoka.JPG"],
@@ -1006,6 +1077,8 @@ const DAYS = [
     hotel: "KOKO HOTEL Fukuoka Tenjin", drive: "เดินทางด้วยรถบัส / แท็กซี่",
     tollSum: "ไม่มีค่าทางด่วน (ยังไม่รับรถ)",
     tollDetails: ["เดินทางในเมืองด้วยรถบัส แท็กซี่ หรือรถไฟใต้ดิน"],
+    roadSegments: [["hakata", "lalaport", "tenjin"]],
+    embedRoute: ["hakata", "lalaport", "tenjin"],
     stops: [
       { p: "hakata", t: "บ่าย", name: "นิดาช้อปปิ้งย่าน Hakata Station", sub: "เดินเล่นห้าง JR Hakata City / AMU Plaza Hakata" },
       { p: "lalaport", t: "บ่ายแก่", name: "LaLaport Fukuoka", sub: "ถ่ายรูปหุ่นกันดั้ม RX-93ff ν Gundam ขนาดเท่าของจริง · ไป-กลับด้วยรถบัสหรือแท็กซี่จาก Hakata" },
@@ -1023,6 +1096,8 @@ const DAYS = [
       "ช่วงที่ 2 (Karato → Mojiko): ลอดอุโมงค์ใต้ทะเล Kanmon Tunnel (Route 2) ค่าผ่านทาง ¥230",
       "ช่วงที่ 3 (Mojiko → Beppu): ขึ้นด่าน Mojiko IC → Kitakyushu JCT → Higashi-Kyushu Expwy ลงด่าน Beppu IC (ETC วันเสาร์ ¥2,840 / เงินสด ¥4,050)"
     ],
+    roadSegments: [["hakata", "karato", "mojiko", "beppuH"]],
+    embedRoute: ["hakata", "karato", "mojiko", "beppuH"],
     stops: [
       { p: "fuk", t: "08:55", name: "✈️ ส้มโอถึงสนามบินฟุกุโอกะ (อาคารระหว่างประเทศ)", sub: "ผ่าน ตม. และรับกระเป๋าประมาณ 45–60 นาที", num: false },
       { p: "fuk", t: "09:45", name: "🚕 แท็กซี่จากสนามบินไป Hakata Station", sub: "ขึ้นที่ชั้น 1F อาคารระหว่างประเทศ (~15 นาที ~¥1,500) หรือบัส Nishitetsu ลงป้าย Hakata Chikushi Exit (~25 นาที ¥310)", num: false },
@@ -1044,6 +1119,8 @@ const DAYS = [
       "ขาไป-ขากลับ Beppu IC ↔ Yufuin IC (Oita Expressway): ระยะทาง 23.8 กม. (~20 นาที) ค่าผ่านทางปกติเที่ยวละ ¥810 (ใช้ ETC วันอาทิตย์ลดเหลือเที่ยวละ ~¥570 · ไป-กลับรวม ~¥1,140)",
       "ทางเลือกชมวิวฟรี: สามารถวิ่งทางหลวงแผ่นดินสาย 216/11 (Yamanami Highway) ผ่านจุดชมวิวภูเขา Yufu โดยไม่เสียค่าทางด่วน (~40 นาที)"
     ],
+    roadSegments: [["beppuH", "umi", "chinoike", "yunotsubo", "kinrin", "beppuH"]],
+    embedRoute: ["beppuH", "umi", "chinoike", "kinrin", "beppuH"],
     stops: [
       { p: "beppuH", t: "08:15", name: "ออกจากโรงแรม Nishitetsu Resort Inn Beppu", sub: "แนะนำออกเช้าเพราะวันอาทิตย์คนเยอะ", num: false },
       { p: "umi", t: "08:30", name: "♨️ Umi Jigoku (บ่อทะเลสีฟ้า) + Oniishibozu Jigoku (บ่อโคลน)", sub: "บ่อเปิด 08:00–17:00 น. ทั้ง 2 บ่ออยู่ติดกัน ซื้อตั๋วแยกเฉพาะบ่อที่เข้าได้ ไม่ต้องซื้อพาสเหมา 7 บ่อ", leg: "ขับรถในเมือง Beppu ~15 น.", toll: "ทางธรรมดา (ฟรี)" },
@@ -1064,6 +1141,8 @@ const DAYS = [
     tollDetails: [
       "วันนี้วิ่งเส้นทางธรรมชาติ Yamanami Highway (Route 11) ต่อเนื่อง Milk Road และทางหลวงสาย 57/325 เข้าเมืองคุมาโมโตะ ไม่มีด่านเก็บเงินค่าทางด่วนตลอดทั้งวัน"
     ],
+    roadSegments: [["beppuH", "daikanbo", "usopp", "kusasenri", "franky", "nami", "zoro", "grids"]],
+    embedRoute: ["beppuH", "daikanbo", "usopp", "kusasenri", "franky", "nami", "zoro", "grids"],
     stops: [
       { p: "beppuH", t: "08:00", name: "เช็คเอาท์ออกจาก Beppu มุ่งหน้าสู่ Aso", sub: "ขับผ่านเส้นทางชมวิว Yamanami Highway ที่สวยที่สุดสายหนึ่งในคิวชู", num: false },
       { p: "daikanbo", t: "10:00", name: "⛰️ จุดชมวิว Daikanbo + ถนน Milk Road", sub: "จุดชมวิวพาโนรามาขอบปล่องภูเขาไฟอะโซะ (Caldera) และเทือกเขาพระพุทธเจ้าปางไสยาสน์", leg: "Yamanami Highway ~1 ชม. 45 น.", toll: "ทางหลวงชมวิว (ฟรี)" },
@@ -1091,6 +1170,8 @@ const DAYS = [
     tollDetails: [
       "วิ่งถนนในตัวเมือง Kumamoto และใช้ทางหลวงสาย 57 ไปยัง Mashiki และ Minamiaso (ฟรีค่าทางด่วนตลอดสาย)"
     ],
+    roadSegments: [["castle", "kokutei", "luffy", "chopper", "sanji", "robin", "grids"]],
+    embedRoute: ["castle", "luffy", "chopper", "sanji", "robin", "grids"],
     stops: [
       { p: "castle", t: "09:00", name: "🏯 ปราสาทคุมาโมโตะ (Kumamoto Castle)", sub: "เปิด 09:00 น. · เดินชมหอคอยปราสาทหลักและทางเดินลอยฟ้า (บางโซนกำแพงหินยังอยู่ระหว่างบูรณะ)", leg: "จากโรงแรม ~10 น.", toll: "ฟรี" },
       { p: "kokutei", t: "11:00", name: "🍜 มื้อกลางวัน: ร้านราเมน Kokutei (黒亭)", sub: "ราเมนซุปกระดูกหมูน้ำมันกระเทียมดำต้นตำรับคุมาโมโตะ (เช็คเวลาเปิดและเลือกสาขา Shimotori หรือสาขาหลักหน้าสถานี)", leg: "~10 น.", toll: "ฟรี" },
@@ -1115,6 +1196,9 @@ const DAYS = [
       "ทางด่วนช่วงที่ 1 (Unzen → Nagasaki): ขึ้นด่าน Isahaya IC → ลง Nagasaki IC (¥600) + ถนน Dejima Road เข้าไชน่าทาวน์ (¥100) = ¥700",
       "ทางด่วนช่วงที่ 2 (Nagasaki → Huis Ten Bosch): ขึ้นด่าน Nagasaki IC → Takeo JCT → Nishi-Kyushu Expwy ลงด่าน Sasebo-Daito IC (ETC ¥2,300 / เงินสด ¥3,060 · หรือวิ่งทางหลวงสาย 206 เลียบอ่าว Omura ฟรี ~1 ชม. 15 น.)"
     ],
+    roadSegments: [["grids", "kport"], ["shimabara", "unzen", "chinatown", "glover", "hamamachi", "htb"]],
+    ferrySegment: ["kport", "shimabara"],
+    embedRoute: ["shimabara", "unzen", "chinatown", "glover", "htb"],
     stops: [
       { p: "grids", t: "08:30", name: "เช็คเอาท์ออกจากโรงแรมไปท่าเรือ Kumamoto Port", sub: "ต้องไปถึงท่าเรือเพื่อทำเรื่องนำรถลงเรืออย่างน้อย 20–30 นาทีก่อนเวลาเรือออก", num: false },
       { p: "kport", t: "09:00", name: "⚓ ท่าเรือ Kumamoto Port", sub: "เตรียมใบจองเรือและสมุดทะเบียนรถเช่าเพื่อเช็คอินขึ้นเรือ", leg: "ขับรถ ~30 น.", toll: "ทางธรรมดา (ฟรี)" },
@@ -1122,7 +1206,7 @@ const DAYS = [
       { p: "unzen", t: "10:45", name: "🌋 นรกอุนเซ็น (Unzen Jigoku)", sub: "เดินชมทางเดินไม้ท่ามกลางไอน้ำแร่กำมะถันบนหุบเขาอุนเซ็น และชิมไข่ออนเซ็น", leg: "ขับขึ้นเขา ~45 น.", toll: "ทางธรรมดา (ฟรี)" },
       { p: "chinatown", t: "13:00", name: "🏮 ไชน่าทาวน์นางาซากิ (Shinchi Chinatown) + มื้อกลางวัน", sub: "ทานเมนูขึ้นชื่อของนางาซากิ: จัมป้ง (Champon) และหมี่กรอบราดหน้าซาระอุด้ง (Sara Udon)", leg: "ลงเขา + Nagasaki Expwy ~1 ชม. 20 น.", toll: "Isahaya → Nagasaki IC ¥700" },
       { p: "dejima", t: "14:00", name: "🏝️ เกาะประวัติศาสตร์ Dejima (เดจิมะ)", sub: "ชมเมืองท่าการค้าโบราณสมัยเอโดะที่เปิดรับชาวดัตช์แห่งเดียวในญี่ปุ่น", leg: "เดินเท้า ~5 น." },
-      { p: "glover", t: "15:00", name: "🏡 สวน Glover Garden (กลover การ์เด้น)", sub: "ชมหมู่บ้านคฤหาสน์สไตล์ตะวันตกบนเนินเขาพร้อมวิวอ่าวนางาซากิมุมสูง", leg: "ขับรถ/รถราง ~10 น." },
+      { p: "glover", t: "15:00", name: "🏡 สวน Glover Garden (กลอเวอร์ การ์เด้น)", sub: "ชมหมู่บ้านคฤหาสน์สไตล์ตะวันตกบนเนินเขาพร้อมวิวอ่าวนางาซากิมุมสูง", leg: "ขับรถ/รถราง ~10 น." },
       { p: "hamamachi", t: "17:00", name: "🛍️ ย่านช้อปปิ้ง Hamamachi Arcade", sub: "เดินเล่นถนนคนเดินในร่มที่คึกคักที่สุดของเมืองนางาซากิ", leg: "ขับรถ ~10 น." },
       { p: "hiragi", t: "17:30", name: "🍅 มื้อเย็น: ราเมงมะเขือเทศ ร้านฮิรากิ (Hiragi Ramen)", sub: "ร้านดังย่าน Doza/Hamamachi ซุปมะเขือเทศเข้มข้นกลมกล่อม", num: false },
       { p: "htb", t: "19:30", name: "🌷 เช็คอินที่พัก Huis Ten Bosch", sub: "ออกจากเมืองนางาซากิ ~18:30 น. · เข้าที่พัก Huis Ten Bosch (จองแล้ว ¥15,723 · ส้มจ่าย)", leg: "Nagasaki → Huis Ten Bosch ~1 ชม.", toll: "ETC ¥2,300 (หรือวิ่งสาย 206 ฟรี)" }
@@ -1144,6 +1228,8 @@ const DAYS = [
       "ขึ้นด่าน Sasebo-Daito IC (Nishi-Kyushu Expwy) → Takeo JCT → Kyushu Expwy → Dazaifu IC (ETC ¥3,570 / เงินสด ¥4,100)",
       "เชื่อมต่อ Fukuoka Urban Expwy ลงด่าน Tenjin-kita Ramp เข้าโรงแรมย่าน Tenjin (¥630)"
     ],
+    roadSegments: [["htb", "shirahamaya", "monterey"]],
+    embedRoute: ["htb", "monterey"],
     stops: [
       { p: "htb", t: "09:00", name: "🎡 เที่ยวสวนสนุก Huis Ten Bosch เต็มวัน", sub: "เดินชมเมืองจำลองเนเธอร์แลนด์ กังหันลม ล่องเรือคลอง เครื่องเล่น VR และไฟประดับ Kingdom of Lights ช่วงค่ำ" },
       { p: "shirahamaya", t: "17:30", name: "🍽️ มื้อเย็น: ร้านข้าว Shirahamaya", sub: "แวะทานมื้อเย็นก่อนขับรถยาวกลับเข้าฟุกุโอกะ (เช็คเวลาเปิดร้านตามลิงก์ Google Maps)", leg: "ขับรถ ~10 น." },
@@ -1161,6 +1247,8 @@ const DAYS = [
     tollDetails: [
       "ใช้ทางด่วนในเมือง Fukuoka Urban Expressway 2 ช่วง (ช่วงสายและช่วงบ่ายกลับเข้าสถานี Hakata) อัตราเหมาจ่ายครั้งละ ¥630 × 2 = ¥1,260"
     ],
+    roadSegments: [["nagahama", "nanzoin", "miyajidake", "marine", "hakata", "canal"]],
+    embedRoute: ["nagahama", "nanzoin", "miyajidake", "marine", "hakata"],
     stops: [
       { p: "nagahama", t: "08:00", name: "🐟 ตลาดปลา Nagahama Fish Market (長浜鮮魚市場)", sub: "ทานอาหารเช้าข้าวหน้าปลาดิบ (Kaisendon) และซูชิสดๆ ในอาคาร Ichiba Kaikan", leg: "จากโรงแรม ~10 น.", toll: "ฟรี" },
       { p: "nanzoin", t: "09:30", name: "🙏 วัดนันโซอิน (Nanzoin Temple)", sub: "สักการะองค์พระพุทธไสยาสน์สำริดขนาดใหญ่ท่ามกลางหุบเขาเมือง Sasaguri (แต่งกายสุภาพ)", leg: "ขับรถ ~30 น.", toll: "ฟรี (หรือ Urban Expwy ¥630)" },
@@ -1179,6 +1267,8 @@ const DAYS = [
     hotel: "—", drive: "แท็กซี่ / รถไฟใต้ดิน",
     tollSum: "ไม่มีค่าทางด่วน (เดินทางด้วยแท็กซี่)",
     tollDetails: ["แท็กซี่จากโรงแรมย่าน Tenjin ไปสนามบินฟุกุโอกะ อาคารระหว่างประเทศ ประมาณ ¥2,500–¥3,000 ต่อคัน (~20–25 นาที)"],
+    roadSegments: [["monterey", "fuk"]],
+    embedRoute: ["monterey", "fuk"],
     stops: [
       { p: "monterey", t: "07:00", name: "🚕 รอบที่ 1: ส้มโอออกจากโรงแรมด้วยแท็กซี่ไปสนามบิน", sub: "ใช้เวลา ~25 นาที ถึงอาคารระหว่างประเทศราว 07:30 น. (ล่วงหน้า 2.5 ชม. ก่อนไฟลท์ 10:00 น.)", num: false },
       { p: "monterey", t: "08:30", name: "🚕 รอบที่ 2: น้ำ+เฟิส ออกจากโรงแรม Hotel Monterey La Soeur", sub: "แนะนำนั่งแท็กซี่ตรงไปอาคารระหว่างประเทศ (~25 นาที) สะดวกกว่านั่ง Subway ที่ต้องไปต่อรถบัส Shuttle อีกทอด", num: false },
@@ -1205,8 +1295,56 @@ function gmapsPlace(key) {
   return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(P[key][2]);
 }
 
+function gmapsEmbedPlaceUrl(key) {
+  const [lat, lon, q] = P[key];
+  return `https://maps.google.com/maps?q=${encodeURIComponent(q)}&ll=${lat},${lon}&z=15&hl=th&output=embed`;
+}
+
+function gmapsEmbedDirUrl(keys) {
+  const saddr = encodeURIComponent(P[keys[0]][2]);
+  const daddr = keys.slice(1).map(k => encodeURIComponent(P[k][2])).join("+to:");
+  return `https://maps.google.com/maps?saddr=${saddr}&daddr=${daddr}&hl=th&dirflg=d&output=embed`;
+}
+
+// Google Maps Tile Layers (No API Key required)
+function createGoogleTileLayer(type = "m") {
+  // m = standard roadmap, y = hybrid satellite + labels
+  return L.tileLayer(`https://mt{s}.google.com/vt/lyrs=${type}&hl=th&x={x}&y={y}&z={z}`, {
+    subdomains: ["0", "1", "2", "3"],
+    maxZoom: 20,
+    attribution: '&copy; Google Maps'
+  });
+}
+
+// Fetch real driving road geometry from OSRM public API
+async function fetchRoadGeometry(keys) {
+  const coords = keys.map(k => `${P[k][1]},${P[k][0]}`).join(";");
+  const url = `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data.code === "Ok" && data.routes && data.routes[0]) {
+      const r = data.routes[0];
+      const latlngs = r.geometry.coordinates.map(([lon, lat]) => [lat, lon]);
+      return {
+        latlngs,
+        km: (r.distance / 1000).toFixed(1),
+        min: Math.round(r.duration / 60)
+      };
+    }
+  } catch (e) {
+    console.warn("Road routing fallback:", e);
+  }
+  return {
+    latlngs: keys.map(k => [P[k][0], P[k][1]]),
+    km: null,
+    min: null
+  };
+}
+
 const dayMaps = {};
 let overviewMap = null;
+let ovCurrentLayer = null;
 
 function createPinIcon(label, type = "") {
   return L.divIcon({
@@ -1222,20 +1360,28 @@ function popupHtml(key, title, sub) {
   const [lat, lon, q, url, img] = P[key];
   const link = gmapsPlace(key);
   return `
-    <div style="width:210px;font-family:'IBM Plex Sans Thai',sans-serif">
+    <div style="width:215px;font-family:'IBM Plex Sans Thai',sans-serif">
       <img src="${img}" alt="${title}" style="width:100%;height:110px;object-fit:cover;border-radius:6px;margin-bottom:6px" loading="lazy">
       <div style="font-weight:700;font-size:13.5px;margin-bottom:2px;color:#1a212d">${title}</div>
       ${sub ? `<div style="font-size:11.5px;color:#5a6473;margin-bottom:6px;line-height:1.35">${sub}</div>` : ""}
-      <a href="${link}" target="_blank" rel="noopener" style="display:inline-block;background:#1e4b7a;color:#fff;text-decoration:none;padding:4px 9px;border-radius:5px;font-size:11.5px;font-weight:600">📍 เปิดใน Google Maps ↗</a>
+      <a href="${link}" target="_blank" rel="noopener" style="display:inline-block;background:#1a73e8;color:#fff;text-decoration:none;padding:4px 9px;border-radius:5px;font-size:11.5px;font-weight:600">📍 เปิดแอป Google Maps ↗</a>
     </div>
   `;
 }
 
-function initOverviewMap() {
+async function initOverviewMap() {
   overviewMap = L.map("map-all", { scrollWheelZoom: false });
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
-  }).addTo(overviewMap);
+  ovCurrentLayer = createGoogleTileLayer("m").addTo(overviewMap);
+
+  // Layer switch tabs for overview map
+  document.getElementById("ov-layer-tabs").addEventListener("click", e => {
+    const btn = e.target.closest(".map-tab");
+    if (!btn) return;
+    document.querySelectorAll("#ov-layer-tabs .map-tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    if (ovCurrentLayer) overviewMap.removeLayer(ovCurrentLayer);
+    ovCurrentLayer = createGoogleTileLayer(btn.dataset.layer === "hybrid" ? "y" : "m").addTo(overviewMap);
+  });
 
   const driveSeqs = [
     ["hakata", "karato", "mojiko", "beppuH"],
@@ -1250,14 +1396,12 @@ function initOverviewMap() {
 
   const allBounds = [];
   driveSeqs.forEach(seq => {
-    const latlngs = seq.map(k => [P[k][0], P[k][1]]);
-    allBounds.push(...latlngs);
-    L.polyline(latlngs, { color: "#c0462b", weight: 3.5, opacity: 0.85 }).addTo(overviewMap);
+    seq.forEach(k => allBounds.push([P[k][0], P[k][1]]));
   });
 
   // Ferry dashed line
   L.polyline([[P.kport[0], P.kport[1]], [P.shimabara[0], P.shimabara[1]]], {
-    color: "#1f7a87", weight: 3.5, dashArray: "7, 7", opacity: 0.9
+    color: "#007b83", weight: 4, dashArray: "8, 7", opacity: 0.95
   }).addTo(overviewMap);
 
   // Add major markers
@@ -1284,11 +1428,20 @@ function initOverviewMap() {
   });
 
   overviewMap.fitBounds(allBounds, { padding: [28, 28] });
+
+  // Draw real road routes asynchronously
+  for (const seq of driveSeqs) {
+    const res = await fetchRoadGeometry(seq);
+    // White casing + Google blue line
+    L.polyline(res.latlngs, { color: "#ffffff", weight: 6, opacity: 0.9 }).addTo(overviewMap);
+    L.polyline(res.latlngs, { color: "#1a73e8", weight: 4, opacity: 0.92 }).addTo(overviewMap);
+  }
 }
 
-function renderDays() {
+async function renderDays() {
   const host = document.getElementById("days");
-  DAYS.forEach((day, idx) => {
+  for (let idx = 0; idx < DAYS.length; idx++) {
+    const day = DAYS[idx];
     const dayId = idx + 1;
     const sec = document.createElement("article");
     sec.className = "day";
@@ -1314,7 +1467,26 @@ function renderDays() {
       </div>
       <div class="daybody ${hasMap ? "" : "nomap"}">
         <div class="col-tl"></div>
-        ${hasMap ? `<div class="col-map"><div id="map-d${dayId}" class="day-leaflet"></div><div class="mapcap"><span>คลิกที่หมุดหรือปุ่ม "ดูบนแผนที่" เพื่อซูมดูตำแหน่ง</span><span>OpenStreetMap</span></div></div>` : ""}
+        ${hasMap ? `
+          <div class="col-map map-col-sticky">
+            <div class="map-toolbar">
+              <div class="map-tabs" data-day-tabs="${dayId}">
+                <button type="button" class="map-tab active" data-mode="road">🛣️ Google ถนนจริง</button>
+                <button type="button" class="map-tab" data-mode="sat">🛰️ ดาวเทียม</button>
+                <button type="button" class="map-tab" data-mode="embed-dir">🧭 Google Directions</button>
+              </div>
+              <span class="route-stat-badge" id="stat-d${dayId}">กำลังคำนวณถนนจริง...</span>
+            </div>
+            <div class="day-map-wrap">
+              <div id="map-d${dayId}" class="day-leaflet"></div>
+              <iframe id="iframe-d${dayId}" class="gmap-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            </div>
+            <div class="mapcap">
+              <span id="cap-d${dayId}">คลิกปุ่ม "🔍 ส่อง Google Maps" ในแต่ละจุดเพื่อดูรีวิวและแผนที่จริงตรงนี้</span>
+              <span>Google Maps</span>
+            </div>
+          </div>
+        ` : ""}
       </div>
     `;
 
@@ -1323,7 +1495,7 @@ function renderDays() {
     tl.className = "tl";
 
     let stopCounter = 0;
-    day.stops.forEach((s, sIdx) => {
+    day.stops.forEach((s) => {
       if (s.leg) {
         const legDiv = document.createElement("div");
         legDiv.className = "leg-row" + (s.ferry ? " ferry" : "");
@@ -1353,8 +1525,9 @@ function renderDays() {
           </div>
           ${s.sub ? `<div class="stop-sub">${s.sub}</div>` : ""}
           <div class="stop-actions">
-            <a class="pin-btn" href="${mapUrl}" target="_blank" rel="noopener">📍 Google Maps ↗</a>
-            ${hasMap ? `<button type="button" class="pin-btn focus-map" data-day="${dayId}" data-lat="${lat}" data-lon="${lon}" data-key="${s.p}" data-name="${s.name.replace(/"/g, '&quot;')}">🔍 ดูบนแผนที่</button>` : ""}
+            <a class="pin-btn" href="${mapUrl}" target="_blank" rel="noopener">📍 เปิดแอป Google Maps ↗</a>
+            ${hasMap ? `<button type="button" class="pin-btn embed-trigger" data-day="${dayId}" data-key="${s.p}" data-name="${s.name.replace(/"/g, '&quot;')}">🔍 ส่อง Google Maps</button>` : ""}
+            ${hasMap ? `<button type="button" class="pin-btn focus-map" data-day="${dayId}" data-lat="${lat}" data-lon="${lon}" data-key="${s.p}" data-name="${s.name.replace(/"/g, '&quot;')}">📌 ซูมหมุด</button>` : ""}
           </div>
         </div>
       `;
@@ -1386,7 +1559,7 @@ function renderDays() {
         a.href = gmapsDir(keys);
         a.target = "_blank";
         a.rel = "noopener";
-        a.textContent = "🗺️ เปิดเส้นทาง Google Maps: " + label + " ↗";
+        a.textContent = "🗺️ นำทางด้วย Google Maps: " + label + " ↗";
         btns.appendChild(a);
       });
       colTl.appendChild(btns);
@@ -1407,32 +1580,19 @@ function renderDays() {
 
     host.appendChild(sec);
 
-    // Initialize Day Leaflet Map
+    // Initialize Day Map (Google Maps Tiles + Real Road Geometry)
     if (hasMap) {
       const mapEl = document.getElementById("map-d" + dayId);
       const m = L.map(mapEl, { scrollWheelZoom: false });
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-        attribution: '&copy; OSM'
-      }).addTo(m);
+      const baseTile = createGoogleTileLayer("m").addTo(m);
 
       const bounds = [];
-      let prevLatLng = null;
       let nCount = 0;
 
       day.stops.forEach(s => {
         const [lat, lon] = P[s.p];
         const cur = [lat, lon];
         bounds.push(cur);
-
-        if (prevLatLng && (prevLatLng[0] !== cur[0] || prevLatLng[1] !== cur[1])) {
-          L.polyline([prevLatLng, cur], {
-            color: s.ferry ? "#1f7a87" : "#c0462b",
-            weight: 3.5,
-            dashArray: s.ferry ? "7, 7" : null,
-            opacity: 0.85
-          }).addTo(m);
-        }
-        prevLatLng = cur;
 
         if (s.num !== false) {
           nCount++;
@@ -1442,30 +1602,126 @@ function renderDays() {
         }
       });
 
-      if (bounds.length) {
-        m.fitBounds(bounds, { padding: [32, 32], maxZoom: 14 });
+      if (day.ferrySegment) {
+        const [k1, k2] = day.ferrySegment;
+        L.polyline([[P[k1][0], P[k1][1]], [P[k2][0], P[k2][1]]], {
+          color: "#007b83", weight: 4, dashArray: "8, 7", opacity: 0.9
+        }).addTo(m);
       }
-      dayMaps[dayId] = m;
+
+      if (bounds.length) {
+        m.fitBounds(bounds, { padding: [34, 34], maxZoom: 14 });
+      }
+      dayMaps[dayId] = { map: m, tile: baseTile, dayData: day };
+
+      // Fetch real road geometry asynchronously for this day
+      (async () => {
+        let totalKm = 0;
+        let totalMin = 0;
+        if (day.roadSegments) {
+          for (const seg of day.roadSegments) {
+            const r = await fetchRoadGeometry(seg);
+            L.polyline(r.latlngs, { color: "#ffffff", weight: 6.5, opacity: 0.92 }).addTo(m);
+            L.polyline(r.latlngs, { color: "#1a73e8", weight: 4.2, opacity: 0.95 }).addTo(m);
+            if (r.km) totalKm += parseFloat(r.km);
+            if (r.min) totalMin += r.min;
+          }
+        }
+        const statEl = document.getElementById("stat-d" + dayId);
+        if (statEl && totalKm > 0) {
+          const hrs = Math.floor(totalMin / 60);
+          const mins = totalMin % 60;
+          const timeStr = hrs > 0 ? `${hrs} ชม. ${mins} น.` : `${mins} นาที`;
+          statEl.textContent = `ถนนจริง ${totalKm.toFixed(1)} กม. (~${timeStr})`;
+        } else if (statEl) {
+          statEl.textContent = day.drive;
+        }
+      })();
     }
-  });
+  }
 }
 
-// Focus marker on map button click
+// Handle Day Map Mode Tabs (Google Road / Satellite / Google Directions Embed)
 document.addEventListener("click", e => {
-  const btn = e.target.closest(".focus-map");
-  if (!btn) return;
-  const dayId = btn.dataset.day;
-  const lat = parseFloat(btn.dataset.lat);
-  const lon = parseFloat(btn.dataset.lon);
-  const key = btn.dataset.key;
-  const name = btn.dataset.name;
-  const m = dayMaps[dayId];
-  if (m) {
-    m.setView([lat, lon], 14, { animate: true });
-    L.popup()
-      .setLatLng([lat, lon])
-      .setContent(popupHtml(key, name, ""))
-      .openOn(m);
+  const tab = e.target.closest("[data-day-tabs] .map-tab");
+  if (tab) {
+    const parent = tab.closest("[data-day-tabs]");
+    const dayId = parent.dataset.dayTabs;
+    const mode = tab.dataset.mode;
+    parent.querySelectorAll(".map-tab").forEach(b => b.classList.remove("active"));
+    tab.classList.add("active");
+
+    const mapEl = document.getElementById("map-d" + dayId);
+    const iframeEl = document.getElementById("iframe-d" + dayId);
+    const capEl = document.getElementById("cap-d" + dayId);
+    const dm = dayMaps[dayId];
+
+    if (mode === "embed-dir") {
+      mapEl.style.display = "none";
+      iframeEl.style.display = "block";
+      const targetUrl = gmapsEmbedDirUrl(dm.dayData.embedRoute);
+      if (iframeEl.src !== targetUrl) iframeEl.src = targetUrl;
+      if (capEl) capEl.textContent = "กำลังแสดงเส้นทาง Google Maps Directions แท้แบบฝังหน้าเว็บ";
+    } else {
+      iframeEl.style.display = "none";
+      mapEl.style.display = "block";
+      if (dm) {
+        dm.map.removeLayer(dm.tile);
+        dm.tile = createGoogleTileLayer(mode === "sat" ? "y" : "m").addTo(dm.map);
+        dm.map.invalidateSize();
+      }
+      if (capEl) capEl.textContent = "คลิกที่หมุดหรือปุ่ม '🔍 ส่อง Google Maps' เพื่อดูรายละเอียดสถานที่";
+    }
+    return;
+  }
+
+  // Handle "🔍 ส่อง Google Maps" (Embed Place inside Day Map box)
+  const embedBtn = e.target.closest(".embed-trigger");
+  if (embedBtn) {
+    const dayId = embedBtn.dataset.day;
+    const key = embedBtn.dataset.key;
+    const name = embedBtn.dataset.name;
+    const mapEl = document.getElementById("map-d" + dayId);
+    const iframeEl = document.getElementById("iframe-d" + dayId);
+    const capEl = document.getElementById("cap-d" + dayId);
+    const tabsWrap = document.querySelector(`[data-day-tabs="${dayId}"]`);
+    if (tabsWrap) tabsWrap.querySelectorAll(".map-tab").forEach(b => b.classList.remove("active"));
+
+    mapEl.style.display = "none";
+    iframeEl.style.display = "block";
+    iframeEl.src = gmapsEmbedPlaceUrl(key);
+    if (capEl) capEl.textContent = `กำลังแสดง Google Maps ของ: ${name} (คลิกปุ่มแท็บด้านบนเพื่อกลับไปดูแผนที่เส้นทางรวม)`;
+    return;
+  }
+
+  // Handle "📌 ซูมหมุด" (Focus marker on Leaflet Google Road Map)
+  const focusBtn = e.target.closest(".focus-map");
+  if (focusBtn) {
+    const dayId = focusBtn.dataset.day;
+    const lat = parseFloat(focusBtn.dataset.lat);
+    const lon = parseFloat(focusBtn.dataset.lon);
+    const key = focusBtn.dataset.key;
+    const name = focusBtn.dataset.name;
+    const mapEl = document.getElementById("map-d" + dayId);
+    const iframeEl = document.getElementById("iframe-d" + dayId);
+    const dm = dayMaps[dayId];
+
+    iframeEl.style.display = "none";
+    mapEl.style.display = "block";
+    const tabsWrap = document.querySelector(`[data-day-tabs="${dayId}"]`);
+    if (tabsWrap) {
+      tabsWrap.querySelectorAll(".map-tab").forEach(b => b.classList.remove("active"));
+      tabsWrap.querySelector('[data-mode="road"]').classList.add("active");
+    }
+
+    if (dm && dm.map) {
+      dm.map.invalidateSize();
+      dm.map.setView([lat, lon], 15, { animate: true });
+      L.popup()
+        .setLatLng([lat, lon])
+        .setContent(popupHtml(key, name, ""))
+        .openOn(dm.map);
+    }
   }
 });
 
